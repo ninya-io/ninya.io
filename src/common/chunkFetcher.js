@@ -1,4 +1,4 @@
-angular.module('myApp')
+angular.module('StackWho')
       .factory('chunkFetcher', ['$http', '$timeout', '$rootScope', '$q', function($http, $timeout, $rootScope, $q){
         
         var ChunkFetcher = function(url, key, pageSize, interceptor){

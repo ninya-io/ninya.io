@@ -1,8 +1,9 @@
-'use strict';
-
-angular.module('myApp', [])
+angular.module('StackWho')
 
   .controller('AppController', ['$scope', '$http', '$rootScope', 'chunkFetcher', function($scope, $http, $rootScope, chunkFetcher) {
+    
+    'use strict';
+
     $scope.searchString = '';
     $scope.displayUsers = [];
     

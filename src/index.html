@@ -6,12 +6,13 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/1.3.1/lodash.min.js"></script>
     <script data-require="angular.js@1.2.x" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.js" data-semver="1.2.0rc1"></script>
     <script src="../libs/store.js"></script>
+    <script src="common/_declarations.js"></script>
     <script src="common/AppController.js"></script>
     <script src="common/chunkFetcher.js"></script>
     <link rel="stylesheet" type="text/css" href="common/style.css" />
   </head>
 
-  <body ng-app="myApp" ng-controller="AppController">
+  <body ng-app="StackWho" ng-controller="AppController">
     <button ng-click="rebuildIndex()">Rebuild Search Index</button>
     <button ng-click="continueIndexBuild()">Start Search Index build</button>
     <button ng-click="fetcher.hold()">Hold Search Index build</button>
