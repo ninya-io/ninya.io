@@ -1,0 +1,11 @@
+ul {
+list-style:none;
+}
+
+.from, .reputation{
+  color: #0088cc;
+}
+
+.user-link{
+  color: #000000;
+}

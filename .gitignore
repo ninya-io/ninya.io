@@ -1,0 +1,11 @@
+**/.DS_Store
+nbproject
+manifest.mf
+build.xml
+
+.project
+.settings
+.idea/*
+.sass-cache
+app/css/*
+node_modules
