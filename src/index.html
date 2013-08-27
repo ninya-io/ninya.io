@@ -13,23 +13,68 @@
   </head>
 
   <body ng-app="StackWho" ng-controller="AppController">
-    <button ng-click="rebuildIndex()">Rebuild Search Index</button>
-    <button ng-click="continueIndexBuild()">Start Search Index build</button>
-    <button ng-click="fetcher.hold()">Hold Search Index build</button>
-    <div>{{ fetcher.data.length }} users cached</div>
-    <input type="text" ng-model="searchString" placeholder="From where?">
-    {{searchString}}
-    
-    <div>Results:</div>
-    <ul>
-      <li ng-repeat="user in displayUsers">
-      <span ng-bind="$index + 1 + '.'"></span>
-      <a class="user-link" href="http://stackoverflow.com/users/{{user.user_id}}" target="_blank"><span ng-bind="user.display_name"></span></a>
-      <span class="from"> from </span>
-      <span ng-bind="user.location"></span>
-      <span class="reputation"> with reputation </span>
-      <span ng-bind="user.reputation"></span>
-    </ul>
+    <div class="sw-wrapper">
+      <h1><span>Stack</span><span class="sw-logo-right">Who</span></h1>
+
+      <h3>What's the deal?</h3>
+      <div>
+        Ever wanted to discover StackExchange (StackOverflow, Server Fault, Super User etc) users around you that share your interests? StackWho makes it possible
+        to find other StackExchange users near your, sorted by reputation. You can further filter them by tags.
+
+        ATTENTION: If you are a company and are trying to find new employees, StackExchange offers a paid
+        search that probably match your needs much better. This is not an attempt to compete with them.
+      </div>
+
+      <h3>How?</h3>
+      <div>
+        StackExchange does not offer a public search API (they have a paid candidate search though!). 
+        That means we have to find different ways to still provide the desired functionality. 
+        StackWho solves that problem by first fetching the N top users (reputation wise) and then hold them
+        in memory so that they can be further analyzed.
+
+        To get started click on "Start Search Index build" and see the number of cached users increasing.
+        You can directly start running further location based filters on top of the already cached users.
+        Running location searches does *NOT* influence the build process of the index. Consider the build process of the index as a backend task (even so it's not using worker threads) that you can start, pause, continue or completly reset. Please note that the StackExchange API will throttle the requests at some point which slows down the process. As an advice: you probably don't need to fetch more than 20.000 users.
+      </div>
+
+      <div class="sw-action-buttons">
+        <button ng-click="rebuildIndex()">Rebuild Search Index</button>
+        <button ng-click="continueIndexBuild()">Start Search Index build</button>
+        <button ng-click="fetcher.hold()">Hold Search Index build</button> 
+      </div>
+      <div class="sw-user-count">
+        <span>cached</span>
+        <span class="sw-user-count-figure" ng-bind="fetcher.data.length"></span>
+        <span>users</span>
+      </div>
+      <input class="sw-search-box" type="text" ng-model="searchString" placeholder="From where?">
+
+      <h3>Tag data</h3>
+      <div>
+        The whole purpose of StackWho is finding users near your that *share your interests*. So you need
+        to have a method to not only filter by location but also by tags.
+        However, we simply can't fetch all the tag data among with all the users. That would be extremely
+        slow.
+
+        What you can do is fetch the tag data for selected users. Just select a bunch of users and click on
+        "fetch tag data". The data gets written to the user and stays cached for the entire session.
+      </div>
+
+      <div>Fetch tag data for selected users</div>
+      
+      <h3>Results</h3>
+      <button ng-click="toggleSelection()">Toggle selection</button>
+      <ul>
+        <li ng-repeat="user in displayUsers">
+        <input type="checkbox" ng-model="user.fetchTags">
+        <span ng-bind="$index + 1 + '.'"></span>
+        <a class="user-link" href="http://stackoverflow.com/users/{{user.user_id}}" target="_blank"><span ng-bind="user.display_name"></span></a>
+        <span class="from"> from </span>
+        <span ng-bind="user.location"></span>
+        <span class="reputation"> with reputation </span>
+        <span ng-bind="user.reputation"></span>
+      </ul>
+    </div>
     
   </body>
 

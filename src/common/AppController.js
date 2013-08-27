@@ -36,9 +36,9 @@ angular.module('StackWho')
                 return users;
               });
     };
-        
+
     var fetcher = chunkFetcher('http://api.stackoverflow.com/1.1/users?', 'users', 100 /*, augmentUsersWithTagInterceptor*/);
-        
+
     $scope.fetcher = fetcher;
     
     $rootScope.$on('fetchedData', function(){
@@ -69,6 +69,20 @@ angular.module('StackWho')
       locationRegex = new RegExp(term);
       updateList();
     });
+
+    $scope.toggleSelection = function(){
+      if ($scope.displayUsers.length === 0){
+        return;
+      }
+
+      var checkState = !!!$scope.displayUsers[0].fetchTags;
+
+      $scope.displayUsers.forEach(function(user){
+        user.fetchTags = checkState;
+      });
+
+    };
+
   }]);
   
   
