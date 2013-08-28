@@ -20,4 +20,8 @@ Lot's of things are in flux.
 
 However, the code is covered by the MIT license and I'm happy to see people joining forces with me.
 
+####See it in action
+
+http://cburgdorf.github.io/StackWho/src/index.html
+
 --Christoph
