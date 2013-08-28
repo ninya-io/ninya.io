@@ -5,9 +5,10 @@ angular.module('StackWho')
     'use strict';
 
     $scope.searchString = '';
+    $scope.searchStringTags = '';
     $scope.displayUsers = [];
     
-    var locationRegex;
+    var locationRegex, tagsRegex;
     
     
     //let's improve this: We can't intercept and fetch all tags for all users.
@@ -59,14 +60,32 @@ angular.module('StackWho')
         return locationRegex.test(user.location); 
       });
     };
+
+    var filterByTags = function(users){
+      return users.filter(function(user){
+        return user.top_tags && _.any(user.top_tags, function(tag){
+          return tagsRegex.test(tag.tag_name);
+        });
+      });
+    };
     
     var updateList = function(){
       $scope.displayUsers = [];
-      $scope.displayUsers = filter(fetcher.data)
+      $scope.displayUsers = filter(fetcher.data);
+
+      if ($scope.searchStringTags.length >0){
+        $scope.displayUsers = filterByTags($scope.displayUsers);
+      }
+
     };
   
     $scope.$watch('searchString', function(term){
-      locationRegex = new RegExp(term);
+      locationRegex = new RegExp(term, 'i');
+      updateList();
+    });
+
+    $scope.$watch('searchStringTags', function(term){
+      tagsRegex = new RegExp(term, 'i');
       updateList();
     });
 
@@ -81,6 +100,18 @@ angular.module('StackWho')
         user.fetchTags = checkState;
       });
 
+    };
+
+    $scope.fetchTags = function(){
+      $scope.displayUsers.forEach(function(user){
+        if (user.fetchTags && !user.top_tags){
+          //there is no paging involved for this API hence the simple $http call
+          $http({method: 'jsonp', url: 'http://api.stackoverflow.com/1.1/users/' + user.user_id + '/top-answer-tags?&jsonp=JSON_CALLBACK'})
+            .success(function(data){
+              user.top_tags = data.top_tags;
+            });
+        }
+      });
     };
 
   }]);

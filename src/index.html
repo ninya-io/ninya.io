@@ -60,12 +60,14 @@
         "fetch tag data". The data gets written to the user and stays cached for the entire session.
       </div>
 
-      <div>Fetch tag data for selected users</div>
+      <button class="sw-button" ng-click="fetchTags()">Fetch tag data for selected users</button>
+
+      <input class="sw-search-box" type="text" ng-model="searchStringTags" placeholder="which tags?">
       
       <h3>Results</h3>
       <button ng-click="toggleSelection()">Toggle selection</button>
       <ul>
-        <li ng-repeat="user in displayUsers">
+        <li class="sw-user-line" ng-class="{ 'sw-user-has-tags': user.top_tags }" ng-repeat="user in displayUsers">
         <input type="checkbox" ng-model="user.fetchTags">
         <span ng-bind="$index + 1 + '.'"></span>
         <a class="user-link" href="http://stackoverflow.com/users/{{user.user_id}}" target="_blank"><span ng-bind="user.display_name"></span></a>

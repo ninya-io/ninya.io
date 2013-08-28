@@ -6,6 +6,10 @@ ul {
   color: #3a6da6;
 }
 
+.sw-user-has-tags{
+  position: relative;
+}
+
 .user-link{
   color: #000000;
 }
@@ -14,6 +18,10 @@ ul {
   width: 90%;
   margin: auto;
   text-align: center;
+}
+
+.sw-button{
+  margin-top: 10px;
 }
 
 .sw-logo-right{
@@ -42,6 +50,17 @@ ul {
   border: 1px solid;
   font-size: 20px;
   margin-top: 10px;
+}
+
+.sw-user-has-tags:after{
+  content: "tags";
+  position: relative;
+  top: -6px;
+  text-decoration: none;
+  background: orange;
+  margin: 2px;
+  padding: 3px;
+  font-size: 6px;
 }
 
 body{
