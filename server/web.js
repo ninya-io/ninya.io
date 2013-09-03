@@ -69,6 +69,7 @@ app.get('/users', function(request, response){
   //we should measure the performance with an temp view.
   //Since we are only dealing with a maximum of 30,000 records, it might be fine to use
   //that over a real view. This would allow us to bring back complex regex & wildcard search
+  //See: http://stackoverflow.com/questions/5509911/how-do-i-create-a-like-filter-view-in-couchdb/9286307#9286307
   if (request.query.location && request.query.top_answers){
     url += '/test/_design/userViews/_view/by_location_tags?startkey=["' + request.query.top_answers + '", "' + request.query.location + '"]&endkey=["' + request.query.top_answers + '", "' + request.query.location + unicodeEnd + '"]';
   }

@@ -12,6 +12,9 @@
   </head>
 
   <body ng-app="StackWho" ng-controller="AppController">
+
+    <a href="https://github.com/cburgdorf/StackWho"><img class="sw-fork-me-badge" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
     <div class="sw-wrapper">
       <h1><span>Stack</span><span class="sw-logo-right">Who</span></h1>
 
@@ -28,9 +31,9 @@
 
       <h3>Top Answer Tags</h3>
 
-      <input class="sw-search-box" type="text" ng-model="searchStringTags" placeholder="which tags?">
+      <input class="sw-search-box" type="text" ng-model="searchStringTags" placeholder="With answers on which topic?">
       
-      <h3>Results</h3>
+      <h3 ng-show="displayUsers.length > 0">Results</h3>
       <ul>
         <li class="sw-user-line" ng-repeat="user in displayUsers">
         <span ng-bind="$index + 1 + '.'"></span>

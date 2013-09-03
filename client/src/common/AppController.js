@@ -1,6 +1,6 @@
 angular.module('StackWho')
 
-  .controller('AppController', ['$scope', '$http', '$rootScope', 'config', function($scope, $http, $rootScope, config) {
+  .controller('AppController', ['$scope', '$http', 'config', function($scope, $http, config) {
     
     'use strict';
 
@@ -10,7 +10,6 @@ angular.module('StackWho')
     
     var updateList = function(){
       $scope.displayUsers = [];
-      //$scope.displayUsers = filter(fetcher.data);
 
       var server = config.backendEndpoint + '/users';
 

@@ -6,11 +6,9 @@ Ever wanted to discover StackExchange (StackOverflow, Server Fault, Super User e
 
 ####How?
 
-StackExchange does not offer a public search API (they have a paid candidate search though!). That means we have to find different ways to still provide the desired functionality. StackWho solves that problem by first fetching the N top users (reputation wise) and then hold them in memory so that they can be further analyzed. To get started click on "Start Search Index build" and see the number of cached users increasing. You can directly start running further location based filters on top of the already cached users. Running location searches does *NOT* influence the build process of the index. Consider the build process of the index as a backend task (even so it's not using worker threads) that you can start, pause, continue or completly reset. Please note that the StackExchange API will throttle the requests at some point which slows down the process. As an advice: you probably don't need to fetch more than 20.000 users.
-
-####Tag data
-
-The whole purpose of StackWho is finding users near your that *share your interests*. So you need to have a method to not only filter by location but also by tags. However, we simply can't fetch all the tag data among with all the users. That would be extremely slow. What you can do is fetch the tag data for selected users. Just select a bunch of users and click on "fetch tag data". The data gets written to the user and stays cached for the entire session.
+StackExchange does not offer a public search API (they have a paid candidate search though!). That means,
+we first have to fetch all their users (actually only the top 20,000) and combine them with their top 30 tags of the answers they have given. We store that information in a CouchDB on heroku. We then use a slim Node.js
+backend to serve our client requests.
 
 ####Developing
 
