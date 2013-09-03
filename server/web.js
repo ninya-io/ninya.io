@@ -33,8 +33,11 @@ app.use(express.logger());
 app.get('/rebuildIndex', function(request, response) {
 
   if (request.query.pw !== stackWhoConfig.adminPassword){
+    response.send('wrong password');
     return;
   }
+
+  response.send('rebuilding index...');
 
   // clean up the database we created previously
     nano.db.destroy(dbName, function() {
@@ -54,7 +57,6 @@ app.get('/rebuildIndex', function(request, response) {
         })
         .fetch()
         .then(function(users){
-          response.send(users);
           console.log(users);
         });
       });
