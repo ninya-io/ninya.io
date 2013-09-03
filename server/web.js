@@ -109,8 +109,6 @@ app.get('/users', function(request, response){
 
 app.configure(function(){
   app.use('/', express.static(__dirname + '/../client/src'));
-  app.use('/', express.static(__dirname + '/../common'));
-  
 });
 
 var port = process.env.PORT || 5000;
