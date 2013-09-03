@@ -57,7 +57,9 @@ angular.module('StackWho')
         searchStringTags: $scope.searchStringTags
       };
     })
-    .distinctUntilChanged()
+    .distinctUntilChanged(function(val){
+      return val.searchString + val.searchStringTags;
+    })
     .doAction(function(){
       $scope.displayUsers = [];
       $scope.loading = true;
