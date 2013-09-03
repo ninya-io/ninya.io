@@ -7,11 +7,14 @@ angular.module('StackWho')
     $scope.searchString = '';
     $scope.searchStringTags = '';
     $scope.displayUsers = [];
-    
-    var updateList = function(){
-      $scope.displayUsers = [];
 
-      var server = config.backendEndpoint + '/users';
+    var server = config.backendEndpoint + '/users';
+
+    var safeApply = function (fn) {
+      ($scope.$$phase || $scope.$root.$$phase) ? fn() : $scope.$apply(fn);
+    };
+
+    var queryBackend = function(){
 
       var searchParams = {};
 
@@ -23,23 +26,44 @@ angular.module('StackWho')
         searchParams.top_answers = $scope.searchStringTags;
       }
 
-      $http({
+      var observable = Rx.Observable.fromDeferred(
+        $http({
           url: server,
           method: 'GET',
           params: searchParams
-        })
-        .then(function(response){
-          $scope.displayUsers = response.data.users;
-        });
-    };
-  
-    //we should throttle the user input
-    $scope.$watch('searchString', function(term){
-      updateList();
-    });
+      }))
+      .select(function(response){
+        return response.data.users;
+      });
 
-    $scope.$watch('searchStringTags', function(term){
-      updateList();
+      safeApply();
+
+      return observable;
+    };
+
+    //This might look scary at first glance.
+    //However this code deals with
+    //1. throttleing user input to not hammer our API on every keystroke
+    //2. not requesting data that is already there 
+    //3. not getting out of order results
+    Rx.Observable.merge(
+      Rx.Observable.fromScope($scope, 'searchString'),
+      Rx.Observable.fromScope($scope, 'searchStringTags')
+    )
+    .throttle(400)
+    .select(function(){
+      return {
+        searchString: $scope.searchString,
+        searchStringTags: $scope.searchStringTags
+      };
+    })
+    .distinctUntilChanged()
+    .select(queryBackend)
+    .switchLatest()
+    .subscribe(function(data){
+      safeApply(function(){
+        $scope.displayUsers = data;
+      });
     });
 
   }]);
