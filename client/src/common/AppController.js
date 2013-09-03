@@ -58,10 +58,15 @@ angular.module('StackWho')
       };
     })
     .distinctUntilChanged()
+    .doAction(function(){
+      $scope.displayUsers = [];
+      $scope.loading = true;
+    })
     .select(queryBackend)
     .switchLatest()
     .subscribe(function(data){
       safeApply(function(){
+        $scope.loading = false;
         $scope.displayUsers = data;
       });
     });
