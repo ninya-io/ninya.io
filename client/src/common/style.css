@@ -52,17 +52,6 @@ ul {
   margin-top: 10px;
 }
 
-.sw-user-has-tags:after{
-  content: "tags";
-  position: relative;
-  top: -6px;
-  text-decoration: none;
-  background: orange;
-  margin: 2px;
-  padding: 3px;
-  font-size: 6px;
-}
-
 body{
   font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
   font-size: 14px;

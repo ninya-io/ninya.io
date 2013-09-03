@@ -1,0 +1,24 @@
+{
+  "name": "stackwho-server",
+  "version": "0.0.0",
+  "description": "the backend for the stackwho app",
+  "main": "web.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christoph Burgdorf <christoph.burgdorf@bvsn.org> (http://cburgdorf.wordpress.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "3.1.x",
+    "nano": "~4.1.1",
+    "q": "~0.9.6",
+    "q-io": "~1.9.4"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.2.x"
+  },
+  "devDependencies": {
+    "nano": "~4.1.1"
+  }
+}
