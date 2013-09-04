@@ -21,7 +21,10 @@ var designDoc =     {
                         "views": {
                             "by_location": {
                                 "map": "function(doc) { if (doc.location != null) emit(doc.location, doc) }" 
-                            }, 
+                            },
+                            "by_reputation": {
+                                "map": "function(doc) { if (doc.reputation != null) emit(doc.reputation, doc) }" 
+                            },
                             "by_location_tags": {
                                 "map": "function(doc) { if (doc.top_tags) { for(i=0;i<doc.top_tags.length;i++) { emit([doc.top_tags[i].tag_name, doc.location], doc); } } }"
                             }
@@ -30,10 +33,17 @@ var designDoc =     {
 
 app.use(express.logger());
 
-app.get('/rebuildIndex', function(request, response) {
-
+var isValid = function(request, response){
   if (request.query.pw !== stackWhoConfig.adminPassword){
     response.send('wrong password');
+    return false;
+  }
+  return true;
+};
+
+app.get('/rebuildIndex', function(request, response) {
+
+  if(!isValid(request, response)){
     return;
   }
 
@@ -61,6 +71,52 @@ app.get('/rebuildIndex', function(request, response) {
         });
       });
     });
+});
+
+app.get('/resumeIndexBuild', function(request, response) {
+
+  if(!isValid(request, response)){
+    return;
+  }
+
+  //get the user where we left off
+  var url = dbUrl + '/test/_design/userViews/_view/by_reputation?limit=1';
+
+  https.get(url, function(res) {
+    var pageData = "";
+    res.setEncoding('utf8');
+    res.on('data', function (chunk) {
+      pageData += chunk;
+    });
+
+    res.on('end', function(){
+
+      var obj = JSON.parse(pageData);
+      var data = {
+        users: []
+      };
+      if (obj && obj.rows && obj.rows.length === 1){
+        var user = obj.rows[0].value;
+        response.send('resuming index build at user ' + user.user_id + '(' + user.reputation +  ')...');
+
+        new ChunkFetcher({
+          url: 'http://api.stackoverflow.com/1.1/users?&max=' + user.reputation,
+          key: 'users',
+          pageSize: 100,
+          maxLength: 20000,
+          interceptor: userTagInterceptor,
+          store: CouchDbStore
+        })
+        .fetch()
+        .then(function(users){
+          console.log(users);
+        });
+      }
+      else{
+        response.send('nothing to resume run rebuildIndex instead');
+      }
+    });
+  });
 });
 
 app.get('/users', function(request, response){

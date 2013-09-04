@@ -26,7 +26,7 @@ var CouchDbStore = function(){
         chunk.forEach(function(entity){
             test.insert(entity, entity.user_id + '', function(error, body, header){
                 if (error) {
-                  console.log('error while writing to db', err.message);
+                  console.log('error while writing to db', error.message);
                   return;
                 }
                 counter++;
