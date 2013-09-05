@@ -17,18 +17,18 @@ var unicodeEnd = '%EF%BF%B0'; //\ufff0
 
 //it's lame to have that here. We should find a different solution
 var designDoc =     {
-                        "language": "javascript", 
-                        "views": {
-                            "by_location": {
-                                "map": "function(doc) { if (doc.location != null) emit(doc.location, doc) }" 
-                            },
-                            "by_reputation": {
-                                "map": "function(doc) { if (doc.reputation != null) emit(doc.reputation, doc) }" 
-                            },
-                            "by_location_tags": {
-                                "map": "function(doc) { if (doc.top_tags) { for(i=0;i<doc.top_tags.length;i++) { emit([doc.top_tags[i].tag_name, doc.location], doc); } } }"
-                            }
-                        }
+                       "language": "javascript",
+                       "views": {
+                           "by_location": {
+                               "map": "function(doc) { \n  if (doc.location != null){\n    emit(doc.location.toLowerCase(), doc);\n    doc.location.split(/\\W+/).forEach(function(word){ \n      emit(word.toLowerCase(), doc) \n    }); \n  } \n}"
+                           },
+                           "by_reputation": {
+                               "map": "function(doc) { if (doc.reputation != null) emit(doc.reputation, doc) }"
+                           },
+                           "by_location_tags": {
+                               "map": "function(doc) { if (doc.top_tags) { for(i=0;i<doc.top_tags.length;i++) { emit([doc.top_tags[i].tag_name, doc.location], doc); } } }"
+                           }
+                       }
                     };
 
 app.use(express.logger());
@@ -120,17 +120,18 @@ app.get('/resumeIndexBuild', function(request, response) {
 });
 
 app.get('/users', function(request, response){
-  var url = dbUrl;
+  var url = dbUrl,
+      location = request.query.location && request.query.location.toLowerCase();
 
   //we should measure the performance with an temp view.
   //Since we are only dealing with a maximum of 30,000 records, it might be fine to use
   //that over a real view. This would allow us to bring back complex regex & wildcard search
   //See: http://stackoverflow.com/questions/5509911/how-do-i-create-a-like-filter-view-in-couchdb/9286307#9286307
   if (request.query.location && request.query.top_answers){
-    url += '/test/_design/userViews/_view/by_location_tags?startkey=["' + request.query.top_answers + '", "' + request.query.location + '"]&endkey=["' + request.query.top_answers + '", "' + request.query.location + unicodeEnd + '"]';
+    url += '/test/_design/userViews/_view/by_location_tags?startkey=["' + request.query.top_answers + '", "' + location + '"]&endkey=["' + request.query.top_answers + '", "' + location + unicodeEnd + '"]';
   }
   else if (request.query.location){
-    url += '/test/_design/userViews/_view/by_location?startkey="' + request.query.location + '"&endkey="' + request.query.location + unicodeEnd + '"';
+    url += '/test/_design/userViews/_view/by_location?startkey="' + location + '"&endkey="' + location + unicodeEnd + '"';
   }
   else {
     response.send('not implemented yet');
