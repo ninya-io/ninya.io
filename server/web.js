@@ -242,12 +242,7 @@ app.get('/state', function(request, response) {
 
 var startKeepAlive = function (){
     setInterval(function() {
-        var options = {
-            host: 'stackwho.herokuapp.com',
-            port: 80,
-            path: '/'
-        };
-        https.get(options, function(res) {
+        https.get('https://stackwho.herokuapp.com', function(res) {
             res.on('data', function(chunk) {
                 try {
                     console.log("HEROKU KEEP ALIVE RESPONSE: " + chunk);
