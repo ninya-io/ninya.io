@@ -6,6 +6,8 @@ var nano = require('nano')(dbUrl);
 var dbName = 'test';
 var db = nano.use(dbName);
 
+var _ = require('lodash');
+
 var express = require('express');
 var app = express();
 
@@ -14,6 +16,9 @@ var CouchDbStore = require('./chunkFetcher/couchdbStore.js');
 var userTagInterceptor = require('./interceptor/userTagInterceptor.js');
 var https = require('https');
 var unicodeEnd = '%EF%BF%B0'; //\ufff0
+
+var users = [];
+var state = 'booting';
 
 //it's lame to have that here. We should find a different solution
 var designDoc =     {
@@ -119,49 +124,120 @@ app.get('/resumeIndexBuild', function(request, response) {
   });
 });
 
-app.get('/users', function(request, response){
-  var url = dbUrl,
-      location = request.query.location && request.query.location.toLowerCase();
+var createFindByLocation = function(locations){
+  return function(user){
 
-  //we should measure the performance with an temp view.
-  //Since we are only dealing with a maximum of 30,000 records, it might be fine to use
-  //that over a real view. This would allow us to bring back complex regex & wildcard search
-  //See: http://stackoverflow.com/questions/5509911/how-do-i-create-a-like-filter-view-in-couchdb/9286307#9286307
-  if (request.query.location && request.query.top_answers){
-    url += '/test/_design/userViews/_view/by_location_tags?startkey=["' + request.query.top_answers + '", "' + location + '"]&endkey=["' + request.query.top_answers + '", "' + location + unicodeEnd + '"]';
-  }
-  else if (request.query.location){
-    url += '/test/_design/userViews/_view/by_location?startkey="' + location + '"&endkey="' + location + unicodeEnd + '"';
-  }
-  else {
-    response.send('not implemented yet');
+    if (!user.location){
+      return false;
+    }
+
+    var matchesLocation = _.any(locations, function(location){
+      return user.location.toLowerCase().indexOf(location) > -1;
+    });
+
+    return matchesLocation;
+  };
+};
+
+var createFindByTopAnswers = function(tags){
+  return function(user){
+
+    if (!user.top_tags){
+      return false;
+    }
+
+    var matchesTopAnswers =  _.any(user.top_tags, function(userTag){
+                                return _.any(tags, function(tag){
+                                  return userTag.tag_name.toLowerCase().indexOf(tag) > -1;
+                                });
+                              });
+    return matchesTopAnswers;
+  };
+};
+
+var locationRegex = /location:(([a-z]|[A-Z]|[0-9]| |,)+)/,
+    answersRegex  = /answers:(([a-z]|[A-Z]|[0-9]| |,)+)/;
+
+app.get('/users', function(request, response){
+
+  var data = {
+    users: []
+  };
+
+  var locationMatch = request.query.searchString.match(locationRegex);
+  var answerTagsMatch = request.query.searchString.match(answersRegex);
+
+  var sanitize = function(word){
+    return word && word.trim().toLowerCase();
+  };
+
+  var empty = function(word){
+    return word && word.length > 0;
+  };
+
+  var locations   = locationMatch && locationMatch.length > 1 && 
+                    locationMatch[1]
+                      .split(',')
+                      .map(sanitize)
+                      .filter(empty) || [];
+
+  var answerTags  = answerTagsMatch && answerTagsMatch.length > 1 && 
+                    answerTagsMatch[1]
+                      .split(',')
+                      .map(sanitize)
+                      .filter(empty) || [];
+
+  if (_.all([locations, answerTags], function(col){ return !col || col.length === 0; })){
+    response.json(data);
     return;
   }
-  
-  https.get(url, function(res) {
-    var pageData = "";
-    res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-      pageData += chunk;
-    });
 
-    res.on('end', function(){
+  var filter = [];
 
-      var obj = JSON.parse(pageData);
-      var data = {
-        users: []
-      };
-      if (obj && obj.rows){
-        data.users = obj.rows.map(function(row){
-          return row.value;
-        });
-      }
+  if (locations.length > 0){
+    filter.push(createFindByLocation(locations));
+  }
 
+  if (answerTags.length > 0){
+    filter.push(createFindByTopAnswers(answerTags));
+  }
 
-      response.json(data);
-    });
+  var matches = users.filter(function(user){
+                  return _.all(filter, function(fn){
+                    return fn(user);
+                  });
+                });
+
+  data.users = matches;
+
+  response.json(data);
+});
+
+https.get(dbUrl + '/test/_all_docs?include_docs=true', function(res){
+  var pageData = "";
+  res.setEncoding('utf8');
+  res.on('data', function (chunk) {
+    state = 'building in memory db';
+    pageData += chunk;
   });
 
+  res.on('end', function(){
+    console.log('end');
+    var obj = JSON.parse(pageData);
+    if (obj && obj.rows){
+      obj.rows.forEach(function(row){
+        users.push(row.doc);
+        console.log(users.length);
+        state = 'transforming';
+      });
+      console.log(users.length);
+      state = 'ready';
+    }
+  });
+});
+
+app.get('/state', function(request, response) {
+  response.send(state);
 });
 
 app.configure(function(){

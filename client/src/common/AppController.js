@@ -16,15 +16,9 @@ angular.module('StackWho')
 
     var queryBackend = function(){
 
-      var searchParams = {};
-
-      if ($scope.searchString){
-        searchParams.location = $scope.searchString;
-      }
-
-      if ($scope.searchStringTags){
-        searchParams.top_answers = $scope.searchStringTags;
-      }
+      var searchParams = {
+        searchString: $scope.searchString
+      };
 
       var observable = Rx.Observable.fromDeferred(
         $http({
@@ -46,20 +40,13 @@ angular.module('StackWho')
     //1. throttleing user input to not hammer our API on every keystroke
     //2. not requesting data that is already there 
     //3. not getting out of order results
-    Rx.Observable.merge(
-      Rx.Observable.fromScope($scope, 'searchString'),
-      Rx.Observable.fromScope($scope, 'searchStringTags')
-    )
+    Rx.Observable
+    .fromScope($scope, 'searchString')
+    .where(function(term){
+      return term && term.length > 0;
+    })
     .throttle(400)
-    .select(function(){
-      return {
-        searchString: $scope.searchString,
-        searchStringTags: $scope.searchStringTags
-      };
-    })
-    .distinctUntilChanged(function(val){
-      return val.searchString + val.searchStringTags;
-    })
+    .distinctUntilChanged()
     .doAction(function(){
       $scope.displayUsers = [];
       $scope.loading = true;
