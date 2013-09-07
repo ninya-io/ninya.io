@@ -240,6 +240,29 @@ app.get('/state', function(request, response) {
   response.send(state);
 });
 
+var startKeepAlive = function (){
+    setInterval(function() {
+        var options = {
+            host: 'stackwho.herokuapp.com',
+            port: 80,
+            path: '/'
+        };
+        https.get(options, function(res) {
+            res.on('data', function(chunk) {
+                try {
+                    console.log("HEROKU KEEP ALIVE RESPONSE: " + chunk);
+                } catch (err) {
+                    console.log(err.message);
+                }
+            });
+        }).on('error', function(err) {
+            console.log("Error: " + err.message);
+        });
+    }, 20 * 60 * 1000); // load every 20 minutes
+};
+
+startKeepAlive();
+
 app.configure(function(){
   app.use('/', express.static(__dirname + '/../client/src'));
   app.use('/libs', express.static(__dirname + '/../client/libs'));
