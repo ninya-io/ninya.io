@@ -155,8 +155,8 @@ var createFindByTopAnswers = function(tags){
   };
 };
 
-var locationRegex = /location:(([a-z]|[A-Z]|[0-9]| |,)+)/,
-    answersRegex  = /answers:(([a-z]|[A-Z]|[0-9]| |,)+)/;
+var locationRegex = /location:(((?!answers:)[-A-Za-z0-9, ])+)/,
+    answersRegex  = /answers:(((?!location:)[-A-Za-z0-9, ])+)/;
 
 app.get('/users', function(request, response){
 
