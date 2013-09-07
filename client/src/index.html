@@ -21,38 +21,33 @@
     <div class="sw-wrapper">
       <h1><span>Stack</span><span class="sw-logo-right">Who</span></h1>
 
-      <h3>What's the deal?</h3>
-      <div>
-        Ever wanted to discover StackExchange (StackOverflow, Server Fault, Super User etc) users around you that share your interests? StackWho makes it possible
-        to find other StackExchange users near your, sorted by reputation. You can further filter them by tags.
+      <input class="sw-search-box" type="text" ng-model="searchString" placeholder="location: London, Birmingham answers: java, c#">
 
-        ATTENTION: If you are a company and are trying to find new employees, StackExchange offers a paid
-        search that probably match your needs much better. This is not an attempt to compete with them.
+      <h3>Find StackOverflow users. By location. Their top answers tags. Or both.</h3>
+
+      <div class="sw-results">
+        <div ng-show="loading" id="circularG">
+          <div id="circularG_1" class="circularG"></div>
+          <div id="circularG_2" class="circularG"></div>
+          <div id="circularG_3" class="circularG"></div>
+          <div id="circularG_4" class="circularG"></div>
+          <div id="circularG_5" class="circularG"></div>
+          <div id="circularG_6" class="circularG"></div>
+          <div id="circularG_7" class="circularG"></div>
+          <div id="circularG_8" class="circularG"></div>
+        </div>
+
+        <h2 ng-show="displayUsers.length > 0">Results</h2>
+        <ul>
+          <li class="sw-user-line" ng-repeat="user in displayUsers">
+          <span ng-bind="$index + 1 + '.'"></span>
+          <a class="user-link" href="http://stackoverflow.com/users/{{user.user_id}}" target="_blank"><span ng-bind="user.display_name"></span></a>
+          <span class="from"> from </span>
+          <span ng-bind="user.location"></span>
+          <span class="reputation"> with reputation </span>
+          <span ng-bind="user.reputation"></span>
+        </ul>
       </div>
-
-      <input class="sw-search-box" type="text" ng-model="searchString" placeholder="location: London, Birmingham; answers: java, c#">
-
-      <div ng-show="loading" id="circularG">
-        <div id="circularG_1" class="circularG"></div>
-        <div id="circularG_2" class="circularG"></div>
-        <div id="circularG_3" class="circularG"></div>
-        <div id="circularG_4" class="circularG"></div>
-        <div id="circularG_5" class="circularG"></div>
-        <div id="circularG_6" class="circularG"></div>
-        <div id="circularG_7" class="circularG"></div>
-        <div id="circularG_8" class="circularG"></div>
-      </div>
-
-      <h3 ng-show="displayUsers.length > 0">Results</h3>
-      <ul>
-        <li class="sw-user-line" ng-repeat="user in displayUsers">
-        <span ng-bind="$index + 1 + '.'"></span>
-        <a class="user-link" href="http://stackoverflow.com/users/{{user.user_id}}" target="_blank"><span ng-bind="user.display_name"></span></a>
-        <span class="from"> from </span>
-        <span ng-bind="user.location"></span>
-        <span class="reputation"> with reputation </span>
-        <span ng-bind="user.reputation"></span>
-      </ul>
     </div>
     
   </body>
