@@ -5,6 +5,8 @@ var api = require('./api.js')(app);
 
 app.use(express.logger());
 
+//we need a keep alive in order to prevent heroku from shutting down
+//our node process (to keep the in memory db alive)
 var startKeepAlive = function (){
     setInterval(function() {
         https.get('https://stackwho.herokuapp.com', function(res) {
