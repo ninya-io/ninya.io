@@ -21,23 +21,6 @@ module.exports = function(app) {
     var lexer = new Lexer();
     var userFilter = new UserFilter();
 
-    //it's lame to have that here. We should find a different solution
-    var designDoc =     {
-                             "language": "javascript",
-                             "views": {
-                                 "by_location": {
-                                     "map": "function(doc) { \n  if (doc.location != null){\n    emit(doc.location.toLowerCase(), doc);\n    doc.location.split(/\\W+/).forEach(function(word){ \n      emit(word.toLowerCase(), doc) \n    }); \n  } \n}"
-                                 },
-                                 "by_reputation": {
-                                     "map": "function(doc) { if (doc.reputation != null) emit(doc.reputation, doc) }"
-                                 },
-                                 "by_location_tags": {
-                                     "map": "function(doc) { if (doc.top_tags) { for(i=0;i<doc.top_tags.length;i++) { emit([doc.top_tags[i].tag_name, doc.location], doc); } } }"
-                                 }
-                             }
-                         };
-
-
     var isValid = function(request, response){
         if (request.query.pw !== stackWhoConfig.adminPassword){
             response.send('wrong password');
@@ -59,9 +42,6 @@ module.exports = function(app) {
         nano.db.destroy(dbName, function() {
               // create a new database
             nano.db.create(dbName, function() {
-
-                //add the design document containing our views
-                db.insert(designDoc, '_design/userViews');
 
                 new ChunkFetcher({
                     url: 'http://api.stackoverflow.com/1.1/users?',
