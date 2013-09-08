@@ -9,17 +9,16 @@ module.exports = function(app) {
 
     var ChunkFetcher = require('./chunkFetcher/chunkFetcher.js');
     var CouchDbStore = require('./chunkFetcher/couchdbStore.js');
+    var InMemoryUserDatabase = require('./inMemoryUserDatabase.js');
     var userTagInterceptor = require('./interceptor/userTagInterceptor.js');
     var Lexer = require('./lexer.js');
     var UserFilter = require('./userFilter.js');
     var https = require('https');
     var unicodeEnd = '%EF%BF%B0'; //\ufff0
 
-    var users = [];
-    var state = 'booting';
-
     var lexer = new Lexer();
     var userFilter = new UserFilter();
+    var inMemoryUserDb = new InMemoryUserDatabase(dbUrl, stackWhoConfig.inMemoryDbRowLimit);
 
     var isValid = function(request, response){
         if (request.query.pw !== stackWhoConfig.adminPassword){
@@ -116,37 +115,13 @@ module.exports = function(app) {
         var locations   = token.locations;
         var answerTags  = token.answerTags;
 
-        data.users = userFilter.filter(users, locations, answerTags);
+        data.users = userFilter.filter(inMemoryUserDb.users, locations, answerTags);
 
         response.json(data);
     });
 
-    //when the API builds, create an in memory db of all users
-    https.get(dbUrl + '/test/_all_docs?include_docs=true', function(res){
-        var pageData = "";
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            state = 'building in memory db';
-            pageData += chunk;
-        });
-
-        res.on('end', function(){
-            console.log('end');
-            var obj = JSON.parse(pageData);
-            if (obj && obj.rows){
-                obj.rows.forEach(function(row){
-                    users.push(row.doc);
-                    console.log(users.length);
-                    state = 'transforming';
-                });
-                console.log(users.length);
-                state = 'ready';
-            }
-        });
-    });
-
     app.get('/state', function(request, response) {
-        response.send(state);
+        response.send(inMemoryUserDb.state);
     });
 
     app.get('/users', function(request, response){
