@@ -14,11 +14,14 @@ var app = express();
 var ChunkFetcher = require('./chunkFetcher/chunkFetcher.js');
 var CouchDbStore = require('./chunkFetcher/couchdbStore.js');
 var userTagInterceptor = require('./interceptor/userTagInterceptor.js');
+var Lexer = require('./lexer.js');
 var https = require('https');
 var unicodeEnd = '%EF%BF%B0'; //\ufff0
 
 var users = [];
 var state = 'booting';
+
+var lexer = new Lexer();
 
 //it's lame to have that here. We should find a different solution
 var designDoc =     {
@@ -155,38 +158,18 @@ var createFindByTopAnswers = function(tags){
   };
 };
 
-var locationRegex = /location:(((?!answers:)[-A-Za-z0-9, ])+)/,
-    answersRegex  = /answers:(((?!location:)[-A-Za-z0-9, ])+)/;
-
 app.get('/users', function(request, response){
 
   var data = {
     users: []
   };
 
-  var locationMatch = request.query.searchString.match(locationRegex);
-  var answerTagsMatch = request.query.searchString.match(answersRegex);
+  var token = lexer.tokenize(request.query.searchString);
 
-  var sanitize = function(word){
-    return word && word.trim().toLowerCase();
-  };
+  var locations   = token.locations;
+  var answerTags  = token.answerTags;
 
-  var empty = function(word){
-    return word && word.length > 0;
-  };
-
-  var locations   = locationMatch && locationMatch.length > 1 && 
-                    locationMatch[1]
-                      .split(',')
-                      .map(sanitize)
-                      .filter(empty) || [];
-
-  var answerTags  = answerTagsMatch && answerTagsMatch.length > 1 && 
-                    answerTagsMatch[1]
-                      .split(',')
-                      .map(sanitize)
-                      .filter(empty) || [];
-
+  
   if (_.all([locations, answerTags], function(col){ return !col || col.length === 0; })){
     response.json(data);
     return;
