@@ -2,8 +2,8 @@ var Lexer = function(){
 
     var self = {};
 
-    var locationRegex = /location:(((?!answers:)[-A-Za-z0-9, ])+)/,
-        answersRegex  = /answers:(((?!location:)[-A-Za-z0-9, ])+)/;
+    var locationRegex = /location:(((?!answers:)[-A-Za-z0-9, ])+)/i,
+        answersRegex  = /answers:(((?!location:)[-A-Za-z0-9, ])+)/i;
 
     self.tokenize = function(str){
 
