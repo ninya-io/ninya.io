@@ -20,6 +20,6 @@ However, the code is covered by the MIT license and I'm happy to see people join
 
 ####See it in action
 
-http://cburgdorf.github.io/StackWho/src/index.html
+http://stackwho.herokuapp.com
 
 --Christoph
