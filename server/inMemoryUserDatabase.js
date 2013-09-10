@@ -3,8 +3,10 @@ var https = require('https');
 var InMemoryUserDatabase = function(dbUrl, limit){
 
     var self = {};
-    var users = [],
-        state = 'not started';
+    var data = {
+            users: [],
+            state: 'not started'
+        };
 
     limit = !limit ? '' : '&limit=' + limit;
 
@@ -14,7 +16,7 @@ var InMemoryUserDatabase = function(dbUrl, limit){
         var pageData = "";
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            state = 'building in memory db';
+            data.state = 'building in memory db';
             pageData += chunk;
         });
 
@@ -23,20 +25,17 @@ var InMemoryUserDatabase = function(dbUrl, limit){
             var obj = JSON.parse(pageData);
             if (obj && obj.rows){
                 obj.rows.forEach(function(row){
-                    users.push(row.doc);
-                    console.log(users.length);
-                    state = 'transforming';
+                    data.users.push(row.doc);
+                    console.log(data.users.length);
+                    data.state = 'transforming';
                 });
-                console.log(users.length);
-                state = 'ready';
+                console.log(data.users.length);
+                data.state = 'ready';
             }
         });
     });
 
-    return {
-        users: users,
-        state: state
-    };
+    return data;
 
 };
 
