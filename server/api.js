@@ -123,21 +123,4 @@ module.exports = function(app) {
     app.get('/state', function(request, response) {
         response.send(inMemoryUserDb.state);
     });
-
-    app.get('/users', function(request, response){
-
-        var data = {
-            users: []
-        };
-
-        var token = lexer.tokenize(request.query.searchString);
-
-        var locations   = token.locations;
-        var answerTags  = token.answerTags;
-
-        data.users = userFilter.filter(users, locations, answerTags);
-
-        response.json(data);
-    });
-
 };
