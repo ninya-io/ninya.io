@@ -27,7 +27,7 @@ var SearchService = function(){
         searchOptions.locations.forEach(function(location){
             locationCount++;
             var or = locationCount > 1 ? ' OR ' :'';
-            locationSql += or + '"user"->>\'location\' LIKE \'%' + location + '%\'';
+            locationSql += or + 'lower("user"->>\'location\') LIKE \'%' + location + '%\'';
         });
 
         if(locationSql){
