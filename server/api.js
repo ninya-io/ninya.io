@@ -20,6 +20,11 @@ module.exports = function(app) {
         var locations   = token.locations;
         var answerTags  = token.answerTags;
 
+        if (token.answerTags.length === 0 && token.locations.length === 0){
+            response.json(data);
+            return;
+        }
+
         searchService
             .search(token)
             .then(function(users){
