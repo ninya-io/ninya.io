@@ -21,7 +21,7 @@ set the `backendEndpoint` configuration to `http:stackwho.herokuapp.com`(https:/
 
 To kickoff the app just run `node server/web.js`.
 
-However, the code is covered by the MIT license and I'm happy to see people joining forces with me.
+The code is covered by the MIT license and I'm happy to see people joining forces with me.
 
 ####See it in action
 
