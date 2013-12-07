@@ -17,9 +17,6 @@ module.exports = function(app) {
 
         var token = lexer.tokenize(request.query.searchString);
 
-        var locations   = token.locations;
-        var answerTags  = token.answerTags;
-
         if (token.answerTags.length === 0 && token.locations.length === 0){
             response.json(data);
             return;
