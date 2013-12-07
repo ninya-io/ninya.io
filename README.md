@@ -12,9 +12,14 @@ backend to serve our client requests.
 
 ####Developing
 
-This is more or less an early spike that was built in a very short amount of time.
-At this stage it's missing tests, a proper build chain, travis integration etc. pp
-Lot's of things are in flux.
+If you like to contribute to StackWho please checkout the [open issues](https://github.com/cburgdorf/StackWho/issues?state=open)
+
+If you like to work on all the nitty gritty stuff you need to setup a local postgres database to work with.
+
+However, if you like to work on the UI part (the project is totally lacking designers!) all you gotta do is
+set the `backendEndpoint` configuration to `http:stackwho.herokuapp.com`(https://github.com/cburgdorf/StackWho/blob/master/client/src/common/config.js#L4) and start chrome with `--disable-web-security` so that requests from your `localhost` to `stackwho.herokuapp` are possible.
+
+To kickoff the app just run `node server/web.js`.
 
 However, the code is covered by the MIT license and I'm happy to see people joining forces with me.
 
