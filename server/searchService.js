@@ -8,6 +8,7 @@ var SearchService = function(){
         var deferred = Q.defer();
 
         var sql = 'SELECT * FROM users WHERE ';
+        var sqlSuffix = ' ORDER By ("user"->>\'reputation\')::int';
 
         var answerTagsCount = 0;
         var answerTagsSql = '';
@@ -36,6 +37,8 @@ var SearchService = function(){
 
         var combinedSql = answerTagsSql && locationSql ? answerTagsSql + ' AND ' + locationSql :
                           answerTagsSql ? answerTagsSql : locationSql;
+
+        combinedSql = combinedSql + sqlSuffix;
 
         pg.connect(stackWhoConfig.dbConnectionString, function(err, client, done) {
             if(err) {
