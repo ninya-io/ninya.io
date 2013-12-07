@@ -8,7 +8,7 @@ var SearchService = function(){
         var deferred = Q.defer();
 
         var sql = 'SELECT * FROM users WHERE ';
-        var sqlSuffix = ' ORDER By ("user"->>\'reputation\')::int';
+        var sqlSuffix = ' ORDER By ("user"->>\'reputation\')::int DESC';
 
         var answerTagsCount = 0;
         var answerTagsSql = '';
