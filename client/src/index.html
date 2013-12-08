@@ -41,7 +41,7 @@
         </div>
 
         <h2 ng-show="displayUsers.length > 0">Results</h2>
-        <ul>
+        <ul class="sw-result-list">
           <li class="sw-user-line" ng-repeat="user in displayUsers">
           <span ng-bind="$index + 1 + '.'"></span>
           <a class="user-link" href="http://stackoverflow.com/users/{{user.user_id}}" target="_blank"><span ng-bind="user.display_name"></span></a>

@@ -42,6 +42,15 @@ ul {
   margin-top: -75px;
 }
 
+.sw-results{
+  width: 600px;
+  margin: auto;
+}
+
+.sw-result-list{
+  padding: 0;
+}
+
 .sw-button{
   margin-top: 10px;
 }
