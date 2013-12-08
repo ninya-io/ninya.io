@@ -1,10 +1,23 @@
 angular.module('StackWho')
 
-  .controller('AppController', ['$scope', '$http', 'config', function($scope, $http, config) {
+  .controller('AppController', ['$scope', '$http', '$location', 'config', function($scope, $http, $location, config) {
     
     'use strict';
 
-    $scope.searchString = '';
+    var paramsToCommand = function(params){
+      var command = '';
+      if (params.location){
+        command += 'location: ' + params.location
+      }
+
+      if(params.answers){
+        command += ' answers: ' + params.answers;
+      }
+
+      return command;
+    };
+
+    $scope.searchString = paramsToCommand($location.search());
     $scope.searchStringTags = '';
     $scope.displayUsers = [];
 
