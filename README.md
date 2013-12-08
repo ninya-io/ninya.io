@@ -7,7 +7,7 @@ Ever wanted to discover StackExchange (StackOverflow, Server Fault, Super User e
 ####How?
 
 StackExchange does not offer a public search API (they have a paid candidate search though!). That means,
-we first have to fetch all their users (actually only the top 20,000) and combine them with their top 30 tags of the answers they have given. We store that information in a CouchDB on heroku. We then use a slim Node.js
+we first have to fetch all their users (currently only the top 50,000) and combine them with their top 30 tags of the answers they have given. We store that information in a PostgresSQL (yep, Postgres can be used as a schemaless DB!) database on heroku. We then use a slim Node.js
 backend to serve our client requests.
 
 ####Developing
