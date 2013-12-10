@@ -11,6 +11,7 @@
     <script src="common/_declarations.js"></script>
     <script src="common/config.js"></script>
     <script src="common/AppController.js"></script>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     <link rel="stylesheet" type="text/css" href="common/style.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -40,7 +41,13 @@
           <div id="circularG_8" class="circularG"></div>
         </div>
 
-        <h2 ng-show="displayUsers.length > 0">Results</h2>
+        <div ng-show="displayUsers.length > 0">
+          <h2>Results</h2>
+          <div class="sw-tweet-button">
+            <a href="https://twitter.com/intent/tweet?url={{createQueryLink()}}&text=Some interesting StackOverflow users!" target="_blank">Tweet</a>
+          </div
+        </div>
+
         <ul class="sw-result-list">
           <li class="sw-user-line" ng-repeat="user in displayUsers">
           <span ng-bind="$index + 1 + '.'"></span>

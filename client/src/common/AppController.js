@@ -6,6 +6,12 @@ angular.module('StackWho')
 
     var paramsToCommand = function(params){
       var command = '';
+
+      if (params.cmd){
+        command += params.cmd;
+        return command;
+      }
+
       if (params.location){
         command += 'location: ' + params.location
       }
@@ -20,6 +26,11 @@ angular.module('StackWho')
     $scope.searchString = paramsToCommand($location.search());
     $scope.searchStringTags = '';
     $scope.displayUsers = [];
+
+    $scope.createQueryLink = function(){
+      var cmd = $scope.searchString.replace(/\s/g, '%20');
+      return encodeURIComponent('http://stackwho.herokuapp.com/#/?cmd=' + cmd);
+    };
 
     var server = config.backendEndpoint + '/users';
 
