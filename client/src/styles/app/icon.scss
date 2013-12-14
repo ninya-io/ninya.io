@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'sw-icon';
+  src: url('../font/sw-icon.eot?76087880');
+  src: url('../font/sw-icon.eot?76087880#iefix') format('embedded-opentype'),
+       url('../font/sw-icon.woff?76087880') format('woff'),
+       url('../font/sw-icon.ttf?76087880') format('truetype'),
+       url('../font/sw-icon.svg?76087880#sw-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "sw-icon";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+     
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  }
+
+.icon-home:before { content: '\e802'; } /* '' */
+.icon-tag:before { content: '\e800'; } /* '' */
+.icon-trophy:before { content: '\e803'; } /* '' */

@@ -1,0 +1,35 @@
+/*------------------------------------*\
+  Search-Box
+\*------------------------------------*/
+
+.sw-search-box {
+  padding: 0 em(2, $font-size-base);
+  margin-bottom: em(6, $font-size-base);
+  border: 1px solid rgba($border-light, .25);
+  background-color: $bg-search-box;
+  }
+
+.sw-search-box__caption {
+  display: block;
+  margin: 0 em(1, $font-size-base);
+  font-size: $font-size-search-caption;
+  color: $text-light;
+  line-height: $line-height-search-caption;
+  border-bottom: 1px dashed $border-light;
+  }
+
+.sw-search-box__input {
+  width: 100%;
+  font-size: $font-size-search-input;
+  line-height: $line-height-search-input;
+  color: $text-input;
+  text-align: center;
+  border: none;
+  background: none;
+  @include appearance (none);
+  }
+
+.sw-search-box__input:focus {
+  outline: none;
+  color: $darker-grey;
+  }

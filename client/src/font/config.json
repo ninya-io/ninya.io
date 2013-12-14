@@ -1,0 +1,28 @@
+{
+  "name": "sw-icon",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "513ac180ff85bd275f2b736720cbbf5e",
+      "css": "home",
+      "code": 59394,
+      "src": "entypo"
+    },
+    {
+      "uid": "875ab0f6d417223f6ec76ff7f0a4baed",
+      "css": "tag",
+      "code": 59392,
+      "src": "entypo"
+    },
+    {
+      "uid": "978aa8facd816df874039e139cb0cdde",
+      "css": "trophy",
+      "code": 59395,
+      "src": "entypo"
+    }
+  ]
+}

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-
   <head>
+    <meta charset="utf-8">
+    <title>StackWho</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/1.3.1/lodash.min.js"></script>
-    <script data-require="angular.js@1.2.x" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular.js" data-semver="1.2.0rc1"></script>
+    <script data-require="angular.js@1.2.x" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.js" data-semver="1.2.5"></script>
+    <script data-require="angular.js@1.2.x" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-animate.js" data-semver="1.2.5"></script>
     <script src="//cdn.jsdelivr.net/rxjs/2.1.11/rx.min.js"></script>
     <script src="//cdn.jsdelivr.net/rxjs/2.1.11/rx.time.js"></script>
     <script src="libs/rx.angular.js"></script>
@@ -11,53 +14,96 @@
     <script src="common/config.js"></script>
     <script src="common/AppController.js"></script>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-    <link rel="stylesheet" type="text/css" href="common/style.css" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="styles/main.css" />
     <meta name="apple-mobile-web-app-capable" content="yes">
   </head>
 
   <body ng-app="StackWho" ng-controller="AppController">
 
-    <a href="https://github.com/cburgdorf/StackWho"><img class="sw-fork-me-badge" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    <a href="https://github.com/cburgdorf/StackWho">
+      <img class="sw-fork-me-badge" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub">
+    </a>
 
-    <div class="sw-wrapper">
-      <h1><span>Stack</span><span class="sw-logo-right">Who</span></h1>
+    <main class="sw-wrapper">
 
-      <input class="sw-search-box" type="text" ng-model="searchString" placeholder="location: London, Birmingham answers: java, c#">
-
-      <h3>Find StackOverflow users. By location. Their top answers tags. Or both.</h3>
-
-      <div class="sw-results">
-        <div ng-show="loading" id="circularG">
-          <div id="circularG_1" class="circularG"></div>
-          <div id="circularG_2" class="circularG"></div>
-          <div id="circularG_3" class="circularG"></div>
-          <div id="circularG_4" class="circularG"></div>
-          <div id="circularG_5" class="circularG"></div>
-          <div id="circularG_6" class="circularG"></div>
-          <div id="circularG_7" class="circularG"></div>
-          <div id="circularG_8" class="circularG"></div>
+      <header class="sw-header">
+        <div class="sw-header__inner">
+          <h1 class="sw-logo">
+            Stack<span class="sw-logo__alt">Who</span>
+          </h1>
+          <div class="sw-search-box">
+            <span class="sw-search-box__caption">Find StackOverflow users. By location. Their top answers tags. Or both.</span>
+            <input class="sw-search-box__input"
+              type="text"
+              ng-model="searchString"
+              placeholder="location: London, Birmingham answers: java, c#"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off">
+          </div>
         </div>
+        <div class="sw-loading" ng-class="{'is-loading': loading}">
+          <div class="sw-loading__animation">
+            <span></span>
+          </div>
+        </div>
+      </header>
 
-        <div ng-show="displayUsers.length > 0">
-          <h2>Results</h2>
+      <section class="sw-results" ng-show="displayUsers.length > 0">
+
+        <h2 class="sw-results__heading">Results</h2>
+
           <div class="sw-tweet-button">
             <a href="https://twitter.com/intent/tweet?url={{createQueryLink()}}&text=Some interesting StackOverflow users!" target="_blank">Tweet</a>
           </div
-        </div>
 
-        <ul class="sw-result-list">
-          <li class="sw-user-line" ng-repeat="user in displayUsers">
-          <span ng-bind="$index + 1 + '.'"></span>
-          <a class="user-link" href="http://stackoverflow.com/users/{{user.user_id}}" target="_blank"><span ng-bind="user.display_name"></span></a>
-          <span class="from"> from </span>
-          <span ng-bind="user.location"></span>
-          <span class="reputation"> with reputation </span>
-          <span ng-bind="user.reputation"></span>
+        <ul class="sw-results__list">
+
+          <li class="sw-results__item"
+            ng-repeat="user in displayUsers"
+            ng-animate>
+            <div class="sw-user">
+              <div class="sw-user__header">
+                <div class="sw-user__img">
+                  <img src="https://www.gravatar.com/avatar/{{user.email_hash}}?s=40" alt="{{user.display_name}}" width="40" height="40">
+                </div>
+                <h3 class="sw-user__name">
+                  <a class="user-link" href="http://stackoverflow.com/users/{{user.user_id}}" target="_blank">
+                    {{user.display_name}}
+                  </a>
+                </h3>
+              </div>
+              <div class="sw-user__body">
+                <i class="icon-home sw-user__icon" aria-hidden="true"></i>
+                <span class="sw-small"> from </span>
+                <span class="sw-highlight">
+                  {{user.location}}
+                </span>
+                <i class="icon-trophy sw-user__icon sw-user__icon--reputation" aria-hidden="true"></i>
+                <span class="sw-small"> with reputation </span>
+                <span class="sw-highlight">
+                  {{user.reputation}}
+                </span>
+              </div>
+              <div class="sw-tags" ng-show="user.top_tags.length > 0">
+                <h4 class="sw-tags__caption">Tags</h4>
+                <ul class="sw-tags__list">
+                  <li class="sw-tags__item" ng-repeat="tag in user.top_tags.slice(0, 5)">
+                    <span>
+                      <i class="icon-tag sw-tags__icon" aria-hidden="true"></i>
+                      {{tag.tag_name}}
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
+
         </ul>
-      </div>
-    </div>
+
+      </section>
+
+    </main>
     
   </body>
 
