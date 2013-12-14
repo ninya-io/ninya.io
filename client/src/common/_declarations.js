@@ -1,1 +1,1 @@
-angular.module('StackWho', []);
+angular.module('StackWho', ['ngAnimate']);

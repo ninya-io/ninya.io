@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2013 by original authors @ fontello.com</metadata>
+<defs>
+<font id="sw-icon" horiz-adv-x="1000" >
+<font-face font-family="sw-icon" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="home" unicode="&#xe802;" d="m888 336q16-16 11-27t-27-11l-84 0l0-310q0-14-1-21t-8-13t-23-6l-204 0l0 310l-204 0l0-310l-194 0q-28 0-35 10t-7 30l0 310l-84 0q-22 0-27 11t11 27l400 402q16 16 38 16t38-16z" horiz-adv-x="900" />
+<glyph glyph-name="tag" unicode="&#xe800;" d="m944 830q36-106-8-199t-128-157l18-24q16-28 6-54l-48-158q-12-30-36-46l-464-328q-42-30-64 4l-210 304q-12 18-9 39t21 33l464 328q26 18 54 18l158 0q30 0 48-26l28-40q168 130 114 286q-10 28 18 40q32 8 38-20z m-216-468q40 32 34 80l-32-16q-8-4-12-4q-18 0-28 18q-12 30 16 40l24 14q-48 34-92 0q-28-18-34-51t14-61q18-26 51-32t59 12z" horiz-adv-x="960" />
+<glyph glyph-name="trophy" unicode="&#xe803;" d="m510 134l0-66q70-8 116-32t46-56q0-36-65-63t-157-27q-90 0-156 27t-66 63q0 32 46 56t118 32l0 66q0 50-33 84t-113 88q-56 36-87 61t-75 72t-64 108t-20 137q0 14 11 24t25 10l172 0q48 92 242 92q196 0 244-92l170 0q14 0 25-10t11-24q0-76-20-137t-64-108t-75-72t-87-61q-78-52-111-87t-33-85z m138 252q80 56 126 114t54 148l-126 0q-6-158-54-262z m-198 364q-62 0-108-15t-64-32t-18-29q0-14 18-31t64-32t108-15t108 15t64 32t18 31q0 12-18 29t-64 32t-108 15z m-378-102q8-90 54-148t126-114q-48 104-54 262l-126 0z" horiz-adv-x="900" />
+</font>
+</defs>
+</svg>
