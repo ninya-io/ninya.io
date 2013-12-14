@@ -1,0 +1,12 @@
+/*------------------------------------*\
+  Animations
+\*------------------------------------*/
+
+@include keyframes (loading) {
+  0% {
+    @include transform (translate3d(-50%, 0, 0));
+  }
+  100% {
+    @include transform (translate3d(0, 0, 0));
+  }
+}

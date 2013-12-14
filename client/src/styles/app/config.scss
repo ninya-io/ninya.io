@@ -1,0 +1,83 @@
+/*------------------------------------*\
+  Dimensions
+\*------------------------------------*/
+
+$max-width: 700px;
+$thumb-size: 40px;
+$height-user-header: 51px;
+
+/*------------------------------------*\
+  Typography
+\*------------------------------------*/
+
+$font-size-base: 14;
+$font-size-body: $font-size-base/16*100%;
+$font-family-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-weight-body: normal;
+$font-size-heading-1: em(36, $font-size-base);
+$font-size-heading-2: em(22, $font-size-base);
+$font-size-heading-3: em(25, $font-size-base);
+$font-size-tags-caption: em(14, $font-size-base);
+$font-size-highlight: em(15, $font-size-base);
+$font-size-small: em(12, $font-size-base);
+$font-size-tag: em(10, $font-size-base);
+$font-size-search-caption: em(11, $font-size-base);
+$font-size-search-input: em(15, $font-size-base);
+$font-size-tag: em(10, $font-size-base);
+
+$line-height-body: 17/$font-size-base;
+$line-height-search-caption: #{(18/em-to-px($font-size-search-caption))};
+$line-height-search-input: #{(36/em-to-px($font-size-search-input))};
+$line-height-tags-caption: #{(36/em-to-px($font-size-tags-caption))};
+$line-height-tag: 16px;
+
+/*------------------------------------*\
+  Colors
+\*------------------------------------*/
+
+$darker-grey: #333;
+$dark-grey: #444;
+$grey: #777;
+$light-grey: #999;
+$lighter-grey: rgba(0, 0, 0, .1);
+$white: #FFF;
+$shaded-white: rgba(255, 255, 255, 0.25);
+$dark-beige: #C2C1B8;
+$beige: #D9D7CE;
+$light-beige: #F2F0E6;
+$blue: #3A6DA6;
+$blue-light: #4C8ED9;
+$blue-lighter: #5BADFF;
+
+/*------------------------------------*\
+  Text Colors
+\*------------------------------------*/
+
+$text-default: $dark-grey;
+$text-subtle: $grey;
+$text-light: $light-grey;
+$text-highlight: $blue;
+$text-logo-alt: $blue;
+$text-bright: $white;
+$text-input: lighten($grey, 13.5%);
+
+/*------------------------------------*\
+  Background Colors
+\*------------------------------------*/
+
+$bg-header: $beige;
+$bg-main: $light-beige;
+$bg-tag: $blue;
+$bg-list-item: $shaded-white;
+$bg-search-box: $white;
+
+/*------------------------------------*\
+  Border Colors
+\*------------------------------------*/
+
+$border-tag: $blue;
+$border-light: $lighter-grey;
+$border-light-inverse: $shaded-white;
+$border-thumb: $white;
+$border-focus: $darker-grey;
+$border-loading: $dark-beige;

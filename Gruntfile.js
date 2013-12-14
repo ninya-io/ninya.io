@@ -26,6 +26,15 @@ module.exports = function (grunt) {
         files: {
           '<%= paths.styles %>main.css': ['<%= paths.styles %>main.scss']
         }
+      },
+      dist: {
+        options: {
+          style: 'compressed',
+          precision: 6
+        },
+        files: {
+          '<%= paths.styles %>main.min.css': ['<%= paths.styles %>main.scss']
+        }
       }
     }
 

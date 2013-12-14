@@ -1,0 +1,10 @@
+/*------------------------------------*\
+  Media-Queries
+\*------------------------------------*/
+
+@media (max-width: 767px) {
+  .sw-search-box{
+    width: 100%;
+    @include box-sizing (border-box);
+  }
+}
