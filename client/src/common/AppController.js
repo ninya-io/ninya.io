@@ -44,7 +44,7 @@ angular.module('StackWho')
         searchString: $scope.searchString
       };
 
-      var observable = Rx.Observable.fromDeferred(
+      var observable = Rx.Observable.fromPromise(
         $http({
           url: server,
           method: 'GET',
@@ -62,9 +62,11 @@ angular.module('StackWho')
     //1. throttleing user input to not hammer our API on every keystroke
     //2. not requesting data that is already there 
     //3. not getting out of order results
-    Rx.Observable
-    .fromScope($scope, 'searchString')
-    .where(function(term){
+
+    $scope
+    .$toObservable('searchString')
+    .where(function(data){
+      var term = data.newValue;
       return term && term.length > 0;
     })
     .throttle(400)
