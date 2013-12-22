@@ -54,8 +54,6 @@ angular.module('StackWho')
         return response.data.users;
       });
 
-      safeApply();
-
       return observable;
     };
 
