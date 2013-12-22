@@ -27,8 +27,15 @@
     if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal)) {
         root = freeGlobal;
     }
-   
-	var rxModule = angular.module('rx', []);
+
+    // Headers
+    var observable = Rx.Observable,
+        observableProto = observable.prototype;
+
+    var isFunction = function(fn){
+        return typeof fn === 'function'
+    };
+    var rxModule = angular.module('rx', []);
 
     rxModule.factory('rx', function($window) {
         if(!$window.Rx) {
@@ -51,6 +58,16 @@
         };
     });
 
+    observableProto.safeApply = function($scope, fn){
+
+        fn = isFunction(fn) ? fn : function(){};
+
+        return this.doAction(function(data){
+            ($scope.$$phase || $scope.$root.$$phase) ? fn(data) : $scope.$apply(function(){
+                fn(data);
+            });
+        });
+    };
 
     rxModule
         .config(['$provide', function($provide){

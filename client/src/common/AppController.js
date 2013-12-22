@@ -77,13 +77,11 @@ angular.module('StackWho')
     })
     .select(queryBackend)
     .switchLatest()
-    .subscribe(function(data){
-      safeApply(function(){
+    .safeApply($scope, function(data){
         $scope.loading = false;
         $scope.displayUsers = data;
-      });
-    });
-
+    })
+    .subscribe();
   }]);
   
   
