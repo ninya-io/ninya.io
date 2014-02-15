@@ -44,15 +44,28 @@
           <h1 class="sw-logo">
             Stack<span class="sw-logo__alt">Who</span>
           </h1>
+          <span class="sw-search-box__caption">Find StackOverflow users. By location. Their top answers tags. Or both.</span>
           <div class="sw-search-box">
-            <span class="sw-search-box__caption">Find StackOverflow users. By location. Their top answers tags. Or both.</span>
-            <input class="sw-search-box__input"
-              type="text"
-              ng-model="searchString"
-              placeholder="location: London, Birmingham answers: java, c#"
-              autocomplete="off"
-              autocorrect="off"
-              autocapitalize="off">
+            <div class="sw-search-box__input-wrapper">
+              <h4 class="sw-search-box__input-caption">LOCATION</h4>
+              <input class="sw-search-box__input"
+                type="text"
+                ng-model="searchStringLocation"
+                placeholder="London, Birmingham"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off">
+            </div>
+            <div class="sw-search-box__input-wrapper">
+                <h4 class="sw-search-box__input-caption">ANSWER</h4>
+                <input class="sw-search-box__input"
+                type="text"
+                ng-model="searchStringTags"
+                placeholder="java, c#"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off">
+            </div>
           </div>
         </div>
         <div class="sw-loading" ng-class="{'is-loading': loading}">
@@ -66,9 +79,9 @@
 
         <h2 class="sw-results__heading">Results</h2>
 
-          <div class="sw-tweet-button">
-            <a href="https://twitter.com/intent/tweet?url={{createQueryLink()}}&text=Some interesting StackOverflow users!" target="_blank">Tweet</a>
-          </div
+        <div class="sw-tweet-button">
+          <a href="https://twitter.com/intent/tweet?url={{createQueryLink()}}&text=Some interesting StackOverflow users!" target="_blank">Tweet</a>
+        </div
 
         <ul class="sw-results__list">
 

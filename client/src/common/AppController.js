@@ -4,31 +4,62 @@ angular.module('StackWho')
     
     'use strict';
 
-    var paramsToCommand = function(params){
-      var command = '';
+    // TODO: We use this on the backend as well. It's time to move this into a common lib
+    // and come up with a proper build process
+    var Lexer = function(){
 
-      if (params.cmd){
-        command += params.cmd;
-        return command;
-      }
+        var self = {};
 
-      if (params.location){
-        command += 'location: ' + params.location
-      }
+        var locationRegex = /location:(((?!answers:)[-A-Za-z0-9, ])+)/i,
+            answersRegex  = /answers:(((?!location:)[-A-Za-z0-9, ])+)/i;
 
-      if(params.answers){
-        command += ' answers: ' + params.answers;
-      }
+        self.tokenize = function(str){
 
-      return command;
+            var locationMatch = str.match(locationRegex);
+            var answerTagsMatch = str.match(answersRegex);
+
+            var token = {
+                locations: [],
+                answerTags: []
+            };
+
+            var sanitize = function(word){
+                return word && word.trim().toLowerCase();
+            };
+
+            var empty = function(word){
+                return word && word.length > 0;
+            };
+
+            token.locations     =   locationMatch && locationMatch.length > 1 && 
+                                    locationMatch[1]
+                                    .split(',')
+                                    .map(sanitize)
+                                    .filter(empty) || [];
+
+            token.answerTags   =   answerTagsMatch && answerTagsMatch.length > 1 && 
+                                    answerTagsMatch[1]
+                                    .split(',')
+                                    .map(sanitize)
+                                    .filter(empty) || [];
+
+            return token;
+        };
+
+        return self;
     };
 
-    $scope.searchString = paramsToCommand($location.search());
-    $scope.searchStringTags = '';
+    var lexer = new Lexer();
+
+    var tokens = lexer.tokenize($location.search().cmd || '');
+
+    $scope.searchStringLocation = tokens.locations.join(',');
+    $scope.searchStringTags = tokens.answerTags.join(',');
+
     $scope.displayUsers = [];
 
     $scope.createQueryLink = function(){
-      var cmd = $scope.searchString.replace(/\s/g, '%20');
+      var cmd = createQueryCommand().replace(/\s/g, '%20');
       return encodeURIComponent('http://stackwho.herokuapp.com/#/?cmd=' + cmd);
     };
 
@@ -38,10 +69,10 @@ angular.module('StackWho')
       ($scope.$$phase || $scope.$root.$$phase) ? fn() : $scope.$apply(fn);
     };
 
-    var queryBackend = function(){
+    var queryBackend = function(searchCommand){
 
       var searchParams = {
-        searchString: $scope.searchString
+        searchString: searchCommand
       };
 
       var observable = Rx.Observable.fromPromise(
@@ -57,18 +88,32 @@ angular.module('StackWho')
       return observable;
     };
 
+    var createQueryCommand = function(){
+      var cmd = '';
+      if ($scope.searchStringLocation.length > 0){
+        cmd += 'location: ' + $scope.searchStringLocation;
+      }
+
+      if ($scope.searchStringTags.length > 0){
+        cmd += ' answers: ' + $scope.searchStringTags;
+      }
+      return cmd;
+    };
+
     //This might look scary at first glance.
     //However this code deals with
     //1. throttleing user input to not hammer our API on every keystroke
     //2. not requesting data that is already there 
     //3. not getting out of order results
 
-    $scope
-    .$toObservable('searchString')
+    Rx.Observable.merge(
+      $scope.$toObservable('searchStringLocation'),
+      $scope.$toObservable('searchStringTags')
+    )
     .where(function(data){
-      var term = data.newValue;
-      return term && term.length > 0;
+      return $scope.searchStringLocation.length > 0 || $scope.searchStringTags.length > 0;
     })
+    .select(createQueryCommand)
     .throttle(400)
     .distinctUntilChanged()
     .doAction(function(){
