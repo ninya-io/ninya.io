@@ -42,6 +42,7 @@
   height: 100%;
   font-size: $font-size-search-input;
   line-height: $line-height-search-input;
+  color: darken($text-input, 20%);
   text-align: center;
   border: none;
   background: none;
