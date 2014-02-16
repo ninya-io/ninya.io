@@ -1,0 +1,25 @@
+// Functions
+
+//
+ // Remove the unit of a value.
+ //
+ // @param {Number} $number Value to strip off the unit
+//
+@function strip-units ($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+//
+ // Converts an em-value to a px-value. Optional unit-stripping.
+ //
+ // @param {Number}  $number em-value to convert
+ // @param {Number}  $context Reference-font-size for converting (default: $font-size-base)
+ // @param {Boolean} $strip-unit Wether to strip off the unit of the return-value
+//
+@function em-to-px ($number, $context: $font-size-base, $strip-unit: true) {
+  @if $strip-unit == true {
+    @return strip-units($number) * $context;
+  } @else {
+    @return $number * $context;
+  }
+}

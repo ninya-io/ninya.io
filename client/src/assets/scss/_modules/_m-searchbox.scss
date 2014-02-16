@@ -1,0 +1,59 @@
+
+// Searchbox
+.sw-m-search-box {
+  @include box-sizing(border-box);
+  padding: 0 em(2, $font-size-base);
+  margin-bottom: em(6, $font-size-base);
+  border: 1px solid rgba($border-light, .25);
+  background-color: $bg-search-box;
+  position: relative;
+  height: 50px;
+
+  @include respond-to('tablet') {
+    width: auto;
+  }
+
+  &:after{
+    content: "";
+    position: absolute;
+    background: rgba($border-light, .25);
+    width: 1px;
+    left: 50%;
+    bottom: 4px;
+    top: 7px;
+  }
+}
+
+.sw-m-search-box__caption {
+  display: block;
+  margin: 0 em(1, $font-size-base);
+  font-size: $font-size-search-caption;
+  color: $text-light;
+  line-height: $line-height-search-caption;
+  }
+
+.sw-m-search-box__input-wrapper{
+  width: 49%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+}
+
+.sw-m-search-box__input {
+  height: 100%;
+  font-size: $font-size-search-input;
+  line-height: $line-height-search-input;
+  color: darken($text-input, 20%);
+  text-align: center;
+  border: none;
+  background: none;
+  @include appearance (none);
+}
+
+.sw-m-search-box__input-caption{
+  color: rgba($border-light, .25);
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  margin: 0;
+}

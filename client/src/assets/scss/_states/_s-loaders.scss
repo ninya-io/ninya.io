@@ -1,0 +1,3 @@
+.is-loading .sw-m-loading__animation {
+  @include transform (translate(0, -3px));
+}

@@ -1,0 +1,26 @@
+
+// Results
+.sw-m-results {
+  max-width: $max-width;
+  padding-bottom: 1em;
+  margin: 0 auto;
+}
+
+.sw-m-results__heading {
+  font-size: $font-size-heading-2;
+  font-weight: normal;
+}
+
+.sw-m-results__list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.sw-m-results__item {
+  display: block;
+  margin: 0 em(5, $font-size-base) em(10, $font-size-base) em(5, $font-size-base);
+  background-color: $bg-list-item;
+  border: 1px solid $border-light;
+  @include transform (translateZ(0));
+  @include backface-visibility (hidden);
+}

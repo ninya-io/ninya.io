@@ -1,0 +1,14 @@
+.sw-m-results__item.ng-enter,
+.sw-m-results__item.ng-leave {
+  @include transition (opacity .5s);
+}
+
+.sw-m-results__item.ng-enter,
+.sw-m-results__item.ng-leave.sw-m-results__item.ng-leave-active {
+  opacity: 0;
+}
+
+.sw-m-results__item.ng-enter.sw-m-results__item.ng-enter-active,
+.sw-m-results__item.ng-leave {
+  opacity: 1;
+}

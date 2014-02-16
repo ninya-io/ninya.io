@@ -1,0 +1,33 @@
+
+// Presets
+body {
+  font: $font-weight-body #{$font-size-body}/#{$line-height-body} $font-family-body;
+  color: $text-default;
+  background-color: $bg-main;
+  overflow-y: scroll;
+  text-align: center;
+}
+
+a:link,
+a:visited {
+  color: $text-default;
+  text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sw-fork-me-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  z-index: 10;
+}
