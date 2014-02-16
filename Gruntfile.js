@@ -4,12 +4,13 @@ module.exports = function (grunt) {
 
     paths: {
       src: 'client/src/',
-      styles: 'client/src/styles/'
+      scss: 'client/src/assets/scss/',
+      stylesheets: 'client/src/assets/stylesheets/'
     },
 
     watch: {
       sass: {
-        files: ['<%= paths.styles %>**/*.scss'],
+        files: ['<%= paths.scss %>**/*.scss'],
         tasks: ['sass:dev'],
         options: {
           livereload: true
@@ -20,20 +21,12 @@ module.exports = function (grunt) {
     sass: {
       dev: {
         options: {
-          style: 'expanded',
-          precision: 6
-        },
-        files: {
-          '<%= paths.styles %>main.css': ['<%= paths.styles %>main.scss']
-        }
-      },
-      dist: {
-        options: {
           style: 'compressed',
+          compass: true,
           precision: 6
         },
         files: {
-          '<%= paths.styles %>main.min.css': ['<%= paths.styles %>main.scss']
+          '<%= paths.stylesheets %>application.css': ['<%= paths.scss %>application.scss']
         }
       }
     }
