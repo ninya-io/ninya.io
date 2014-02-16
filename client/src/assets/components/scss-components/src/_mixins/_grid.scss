@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+// Creating a column
+// Define your $max-cols in your variables
+// Use border-box
+@mixin col($col, $max-cols: 12) {
+  width: (100%/$max-cols)*$col;
+}
+
+// Push a column
+// Define your $max-cols in your variables
+@mixin col-push($col, $max-cols: 12) {
+  margin-left: (100%/$max-cols)*$col;
+}
+
+// Pull a column
+// Define your $max-cols in your variables
+@mixin col-pull($col, $max-cols: 12) {
+  margin-left: -(100%/$max-cols)*$col;
+}

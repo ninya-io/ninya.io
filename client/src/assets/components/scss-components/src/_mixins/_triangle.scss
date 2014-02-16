@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+// Triangle
+@mixin triangle($direction, $size, $color) {
+  @if $direction == 'bottom' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+
+    @content;
+  }
+  @if $direction == 'top' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+
+    @content;
+  }
+  @if $direction == 'left' {
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+    border-top: $size solid transparent;
+
+    @content;
+  }
+  @if $direction == 'right' {
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    border-top: $size solid transparent;
+
+    @content;
+  }
+}

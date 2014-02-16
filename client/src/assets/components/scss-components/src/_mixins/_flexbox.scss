@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+// Flexbox
+@mixin flexbox() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+// Box-Flex
+@mixin box-flex($value) {
+  -webkit-box-flex: $value;
+     -moz-box-flex: $value;
+          box-flex: $value;
+  -webkit-flex: $value;
+      -ms-flex: $value;
+          flex: $value;
+}
+
+// Orientation
+@mixin box-orient($orientation) {
+  -webkit-box-orient: $orientation;
+     -moz-box-orient: $orientation;
+      -ms-box-orient: $orientation;
+          box-orient: $orientation;
+}
+
+// Direction
+@mixin box-direction($direction) {
+  -webkit-flex-direction: $direction;
+     -moz-flex-direction: $direction;
+      -ms-flex-direction: $direction;
+          flex-direction: $direction;
+}

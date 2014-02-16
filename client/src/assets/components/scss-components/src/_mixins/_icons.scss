@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+// For adding icons to elements using CSS pseudo-elements
+// Source: http://jaydenseric.dev/blog/fun-with-sass-and-font-icons
+@mixin icon($position: 'before', $icon: false) {
+  &:#{$position} {
+    @if $icon {
+        content: match($icons, $icon);
+    }
+    @content;
+  }
+}

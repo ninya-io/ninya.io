@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+// Animation
+@mixin animation($params) {
+  -webkit-animation: #{$params};
+     -moz-animation: #{$params};
+          animation: #{$params};
+}
+
+// Delay
+@mixin animation-delay($delay) {
+  -webkit-animation-delay: $delay;
+     -moz-animation-delay: $delay;
+          animation-delay: $delay;
+}
+
+// Direction
+@mixin animation-direction($direction) {
+  -webkit-animation-direction: $direction;
+     -moz-animation-direction: $direction;
+          animation-direction: $direction;
+}
+
+// Duration
+@mixin animation-duration($duration) {
+  -webkit-animation-duration: $duration;
+     -moz-animation-duration: $duration;
+          animation-duration: $duration;
+}
+
+// Iteration-Count
+@mixin animation-iteration-count($iteration-count) {
+  -webkit-animation-iteration-count: $iteration-count;
+     -moz-animation-iteration-count: $iteration-count;
+          animation-iteration-count: $iteration-count;
+}
+
+// Name
+@mixin animation-name($name) {
+  -webkit-animation-name: $name;
+     -moz-animation-name: $name;
+          animation-name: $name;
+}
+
+// Play-State
+@mixin animation-play-state($play-state) {
+  -webkit-animation-play-state: $play-state;
+     -moz-animation-play-state: $play-state;
+          animation-play-state: $play-state;
+}
+
+// Timing-Function
+@mixin animation-timing-function($timing-function) {
+  -webkit-animation-timing-function: $timing-function;
+     -moz-animation-timing-function: $timing-function;
+          animation-timing-function: $timing-function;
+}
+
+// Animation-Fill-Mode
+@mixin animation-fill-mode($fill-mode) {
+  -webkit-animation-fill-mode: $fill-mode;
+     -moz-animation-fill-mode: $fill-mode;
+          animation-fill-mode: $fill-mode;
+}
+
+// Keyframes
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
