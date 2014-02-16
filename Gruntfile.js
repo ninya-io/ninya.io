@@ -4,12 +4,13 @@ module.exports = function (grunt) {
 
     paths: {
       src: 'client/src/',
-      styles: 'client/src/styles/'
+      scss: 'client/src/assets/scss/',
+      stylesheets: 'client/src/assets/stylesheets/'
     },
 
     watch: {
       sass: {
-        files: ['<%= paths.styles %>**/*.scss'],
+        files: ['<%= paths.scss %>**/*.scss'],
         tasks: ['sass:dev'],
         options: {
           livereload: true

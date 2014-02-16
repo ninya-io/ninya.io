@@ -1,0 +1,43 @@
+// User
+.sw-m-user {
+  padding: em(6, $font-size-base);
+}
+
+.sw-m-user__header {
+  height: $height-user-header;
+  line-height: 46px;
+  margin-bottom: em(6, $font-size-base);
+  border-bottom: 1px solid $border-light;
+}
+
+.sw-m-user__img,
+.sw-m-user__name {
+  @include inline-block;
+}
+
+.sw-m-user__img {
+  width: $thumb-size;
+  height: $thumb-size;
+  overflow: hidden;
+  border-radius: $thumb-size;
+  border: 3px solid $border-thumb;
+}
+
+.sw-m-user__name {
+  margin: 0 0 0 em(7, em-to-px($font-size-heading-3));
+  font-size: $font-size-heading-3;
+  font-weight: normal;
+  vertical-align: 25%;
+}
+
+.sw-m-user__body {
+  padding: em(6, $font-size-base) 0 em(11, $font-size-base) 0;
+}
+
+.sw-m-user__icon {
+  color: $text-subtle;
+}
+
+.sw-m-user__icon--reputation {
+  margin-left: em(14, $font-size-base);
+}

@@ -1,0 +1,39 @@
+
+// Layout-Helpers
+.sw-l-highlight {
+  color: $text-highlight;
+  font-size: $font-size-highlight;
+}
+
+.sw-l-small {
+  font-size: $font-size-small;
+}
+
+// Logo
+.sw-l-logo {
+  margin: em(9, 26) 0;
+  font-size: $font-size-heading-1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .4), 0 2px 0 rgba(255, 255, 255, .6);
+}
+
+.sw-l-logo__alt {
+  color: $text-logo-alt;
+}
+
+// Default Layout
+// Wrapper
+.sw-l-wrapper {
+  overflow-x: hidden;
+}
+
+// Banner
+.sw-l-header {
+  position: relative;
+  padding: em(2, $font-size-base) em(2, $font-size-base) em(5, $font-size-base) em(2, $font-size-base);
+  background-color: $bg-header;
+}
+
+.sw-l-header__inner {
+  max-width: $max-width;
+  margin: 0 auto;
+}
