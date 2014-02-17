@@ -19,11 +19,21 @@ module.exports = function (grunt) {
     },
 
     sass: {
+      options: {
+        compass: true,
+        precision: 6
+      },
       dev: {
         options: {
-          style: 'compressed',
-          compass: true,
-          precision: 6
+          style: 'expanded'
+        },
+        files: {
+          '<%= paths.stylesheets %>application.css': ['<%= paths.scss %>application.scss']
+        }
+      },
+      dist: {
+        options: {
+          style: 'compressed'
         },
         files: {
           '<%= paths.stylesheets %>application.css': ['<%= paths.scss %>application.scss']
