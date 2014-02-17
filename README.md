@@ -1,5 +1,7 @@
 # StackWho
 
+>the StackOverflow user search.
+
 ####What's the deal?
 
 Ever wanted to discover StackExchange (StackOverflow, Server Fault, Super User etc) users around you that share your interests? StackWho makes it possible to find other StackExchange users near your, sorted by reputation. You can further filter them by tags. ATTENTION: If you are a company and are trying to find new employees, StackExchange offers a paid search that probably match your needs much better. This is not an attempt to compete with them.
