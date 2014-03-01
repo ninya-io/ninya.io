@@ -3,11 +3,11 @@ module.exports = function(app) {
     var stackWhoConfig = require('./common/config.js');
 
     var Lexer = require('./lexer.js');
-    var SearchService = require('./searchService.js');
+    var ElasticSearchService = require('./elasticSearchService.js');
     var https = require('https');
     
     var lexer = new Lexer();
-    var searchService = new SearchService();
+    var searchService = new ElasticSearchService();
 
     app.get('/users', function(request, response){
 

@@ -5,8 +5,6 @@ var api = require('./api.js')(app);
 
 app.use(express.logger());
 
-var pg = require('pg'); 
-
 app.configure(function(){
     app.use('/', express.static(__dirname + '/../client/src'));
     app.use('/libs', express.static(__dirname + '/../client/libs'));
