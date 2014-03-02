@@ -60,7 +60,7 @@ angular.module('StackWho')
 
     $scope.createQueryLink = function(){
       var cmd = createQueryCommand().replace(/\s/g, '%20');
-      return encodeURIComponent('http://stackwho.herokuapp.com/#/?cmd=' + cmd);
+      return encodeURIComponent('http://www.ninya.io/#/?cmd=' + cmd);
     };
 
     var server = config.backendEndpoint + '/users';
