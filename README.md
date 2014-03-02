@@ -19,7 +19,7 @@ backend to serve our client requests.
 If you like to contribute to StackWho please checkout the [open issues](https://github.com/cburgdorf/ninya.io/issues?state=open). If you like to work on all the nitty gritty stuff you need to setup a local postgres database to work with.
 
 However, if you like to work on the UI part (the project is totally lacking designers!) all you gotta do is
-set the `backendEndpoint` configuration to `http:www.ninya.io`(https://github.com/cburgdorf/ninya.io/blob/master/client/src/common/config.js#L4) and start chrome with `--disable-web-security` so that requests from your `localhost` to `www.ninya.io` are possible.
+set the `backendEndpoint` configuration to `http://www.ninya.io`(https://github.com/cburgdorf/ninya.io/blob/master/client/src/common/config.js#L4) and start chrome with `--disable-web-security` so that requests from your `localhost` to `www.ninya.io` are possible.
 
 To kickoff the app just run `node server/web.js`.
 
