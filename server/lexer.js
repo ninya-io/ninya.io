@@ -2,8 +2,10 @@ var Lexer = function(){
 
     var self = {};
 
-    var locationRegex = /location:(((?!answers:)[-A-Za-z0-9, ])+)/i,
-        answersRegex  = /answers:(((?!location:)[-A-Za-z0-9, ])+)/i;
+    var ALL_LETTERS_AND_DIGITS = 'a-zA-Z0-9ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ'
+
+    var locationRegex = new RegExp('location:(((?!answers:)[' + ALL_LETTERS_AND_DIGITS + ', ])+)', 'i'),
+        answersRegex  = new RegExp('answers:(((?!location:)[' + ALL_LETTERS_AND_DIGITS + ', ])+)', 'i');
 
     self.tokenize = function(str){
 
