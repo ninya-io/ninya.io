@@ -1,4 +1,4 @@
 module.exports = {
-    dbConnectionString: 'ENTER_DB_STRING_HERE',
+    elasticsearchEndpoint: 'ENTER_ENDPOINT_HERE',
 };
 
