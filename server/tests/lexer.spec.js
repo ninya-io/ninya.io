@@ -67,5 +67,13 @@ describe('Lexer', function(){
 
         token.locations.should.eql(['zürich', 'göttingen']);
     });
+
+    it('should handle special chars', function(){
+
+        var lexer = new Lexer();
+        var token = lexer.tokenize('answers: c#')
+
+        token.answerTags.should.eql(['c#']);
+    });
   })
 })
