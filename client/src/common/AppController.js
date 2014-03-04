@@ -63,7 +63,12 @@ angular.module('StackWho')
       return encodeURIComponent('http://www.ninya.io/#/?cmd=' + cmd);
     };
 
-    var server = config.backendEndpoint + '/users';
+    // since the site operates under stackwho.herokuapp.com and ninya.io we need to use origin except when we are on localhost
+    // because then we either want to use localhost or one of the production backends
+    var host = location.origin.indexOf('ninya.io') > -1 || location.origin.indexOf('stackwho.herokuapp.com') > -1
+               ? location.origin : config.backendEndpoint;
+
+    var server = host + '/users';
 
     var safeApply = function (fn) {
       ($scope.$$phase || $scope.$root.$$phase) ? fn() : $scope.$apply(fn);
