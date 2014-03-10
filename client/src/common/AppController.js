@@ -51,7 +51,7 @@ angular.module('StackWho')
 
     var lexer = new Lexer();
 
-    var tokens = lexer.tokenize($location.search().cmd || '');
+    var tokens = lexer.tokenize($location.search().cmd || $location.search().q || '');
 
     $scope.searchStringLocation = tokens.locations.join(',');
     $scope.searchStringTags = tokens.answerTags.join(',');
@@ -60,7 +60,7 @@ angular.module('StackWho')
 
     $scope.createQueryLink = function(){
       var cmd = createQueryCommand().replace(/\s/g, '%20');
-      return encodeURIComponent('http://www.ninya.io/#/?cmd=' + cmd);
+      return encodeURIComponent('http://www.ninya.io/#/?q=' + cmd);
     };
 
     // since the site operates under stackwho.herokuapp.com and ninya.io we need to use origin except when we are on localhost
