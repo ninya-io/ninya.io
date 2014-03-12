@@ -77,7 +77,69 @@
 
       <main class="sw-m-results" ng-show="displayUsers.length > 0" role="main">
 
-        <h2 class="sw-m-results__heading">Results</h2>
+        <!-- we hardcode those for better SEO until we have something like prerender.io integrated -->
+
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_london'">
+          Those are the top AngularJS developers from London
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_london'">
+          Those are the top Node.js developers from London
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_london'">
+          Those are the top JavaScript developers from London
+        </h2>
+
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_sanfrancisco'">
+          Those are the top AngularJS developers from San Francisco
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_sanfrancisco'">
+          Those are the top Node.js developers from San Francisco
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_sanfrancisco'">
+          Those are the top JavaScript developers from San Francisco
+        </h2>
+
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_berlin'">
+          Those are the top AngularJS developers from Berlin
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_berlin'">
+          Those are the top Node.js developers from Berlin
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_berlin'">
+          Those are the top JavaScript developers from Berlin
+        </h2>
+
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_hamburg'">
+          Those are the top AngularJS developers from Hamburg
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_hamburg'">
+          Those are the top Node.js developers from Hamburg
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_hamburg'">
+          Those are the top JavaScript developers from Hamburg
+        </h2>
+
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_germany'">
+          Those are the top AngularJS developers from Germany
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_germany'">
+          Those are the top Node.js developers from Germany
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_germany'">
+          Those are the top JavaScript developers from Germany
+        </h2>
+
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_birmingham'">
+          Those are the top AngularJS developers from Birmingham
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_birmingham'">
+          Those are the top Node.js developers from Birmingham
+        </h2>
+        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_birmingham'">
+          Those are the top JavaScript developers from Birmingham
+        </h2>
+
+        <h2 class="sw-m-results__heading" ng-show="!definedSearch">Results</h2>
 
         <div class="sw-m-tweet-button">
           <a href="https://twitter.com/intent/tweet?url={{createQueryLink()}}&text=Some interesting StackOverflow users!" target="_blank">Tweet</a>

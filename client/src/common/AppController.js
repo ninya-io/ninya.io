@@ -4,6 +4,38 @@ angular.module('StackWho')
     
     'use strict';
 
+    var definedSearches = [
+      { name: 'angular_sanfrancisco', location: 'francisco', skills: 'angularjs' },
+      { name: 'nodejs_sanfrancisco', location: 'francisco', skills: 'node' },
+      { name: 'javascript_sanfrancisco', location: 'francisco', skills: 'javascript' },
+      { name: 'angular_london', location: 'london', skills: 'angularjs' },
+      { name: 'nodejs_london', location: 'london', skills: 'node' },
+      { name: 'javascript_london', location: 'london', skills: 'javascript' },
+      { name: 'angular_berlin', location: 'berlin', skills: 'angularjs' },
+      { name: 'nodejs_berlin', location: 'berlin', skills: 'node' },
+      { name: 'javascript_berlin', location: 'berlin', skills: 'javascript' },
+      { name: 'angular_hamburg', location: 'hamburg', skills: 'angularjs' },
+      { name: 'nodejs_hamburg', location: 'hamburg', skills: 'node' },
+      { name: 'javascript_hamburg', location: 'hamburg', skills: 'javascript' },
+      { name: 'angular_germany', location: 'germany', skills: 'angularjs' },
+      { name: 'nodejs_germany', location: 'germany', skills: 'node' },
+      { name: 'javascript_germany', location: 'germany', skills: 'javascript' },
+      { name: 'angular_birmingham', location: 'birmingham', skills: 'angularjs' },
+      { name: 'nodejs_birmingham', location: 'birmingham', skills: 'node' },
+      { name: 'javascript_birmingham', location: 'birmingham', skills: 'javascript' }
+    ];
+
+    var getDefinedSearch = function(tokens){
+        var matchedSearch = null;
+        definedSearches.forEach(function(search){
+            if (tokens.locations.indexOf(search.location) > -1 && tokens.answerTags.indexOf(search.skills) > -1) {
+                matchedSearch = search.name;
+            }
+        });
+
+        return matchedSearch;
+    };
+
     // TODO: We use this on the backend as well. It's time to move this into a common lib
     // and come up with a proper build process
     var Lexer = function(){
@@ -52,6 +84,8 @@ angular.module('StackWho')
     var lexer = new Lexer();
 
     var tokens = lexer.tokenize($location.search().cmd || $location.search().q || '');
+
+    $scope.definedSearch = getDefinedSearch(tokens);
 
     $scope.searchStringLocation = tokens.locations.join(',');
     $scope.searchStringTags = tokens.answerTags.join(',');
