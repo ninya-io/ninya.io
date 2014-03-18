@@ -19,7 +19,7 @@ var SearchService = function(){
         var searchParams = defaultSearchParamBuilder.createSearchParam(searchOptions);
 
         var searchOptions = {
-            index: 'production',
+            index: 'production_v4',
             type: 'user',
             size: 100,
             body: searchParams

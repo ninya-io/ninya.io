@@ -41,11 +41,11 @@ describe('DefaultSearchParamBuilder', function(){
                         "bool": {
                             "should": [{
                                 "wildcard": {
-                                    "location": "*germ*"
+                                    "_ninya_location_lowercase": "*germ*"
                                 }
                             }, {
                                 "wildcard": {
-                                    "location": "*usa*"
+                                    "_ninya_location_lowercase": "*usa*"
                                 }
                             }],
                             "minimum_should_match": 1
@@ -96,11 +96,11 @@ describe('DefaultSearchParamBuilder', function(){
                         "bool": {
                             "should": [{
                                 "wildcard": {
-                                    "location": "*germ*"
+                                    "_ninya_location_lowercase": "*germ*"
                                 }
                             }, {
                                 "wildcard": {
-                                    "location": "*usa*"
+                                    "_ninya_location_lowercase": "*usa*"
                                 }
                             }],
                             "minimum_should_match": 1
