@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="190px" height="158px" viewBox="0 0 190 158" enable-background="new 0 0 190 158" xml:space="preserve">
+	<g>
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="136.1836" y1="63.0532" x2="188.5059" y2="63.0532">
+			<stop  offset="0" style="stop-color:#D73F40" />
+			<stop  offset="1" style="stop-color:#AA1E1E" />
+		</linearGradient>
+		<polygon fill="url(#SVGID_1_)" points="188.5059,47.5273 136.1836,67.7441 173.2031,78.5791" />
+		<polygon fill="#5A1E1E" points="160.0312,36.6562 136.207,67.8135 160.3184,58.3135" />
+		<polygon fill="#C02F2F" points="132,35 72,1 12,35 2,113 72,157 142,113" />
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="130.5" y1="124.5" x2="73.5006" y2="67.5006">
+			<stop  offset="0" style="stop-color:#A02828" />
+			<stop  offset="1" style="stop-color:#5B0000" />
+		</linearGradient>
+		<polygon fill="url(#SVGID_2_)" points="72,157 142,113 132,35 72,69" />
+		<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="119.5107" y1="84.5107" x2="88.001" y2="53.001">
+			<stop  offset="0" style="stop-color:#5A1414" />
+			<stop  offset="1" style="stop-color:#460000" />
+		</linearGradient>
+		<polygon fill="url(#SVGID_3_)" points="132,35 72,69 72,99 136.207,67.8135" />
+		<polygon fill="#871E1E" points="12,35 7.793,67.8135 72,99 72,69" />
+		<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="12" y1="35" x2="132" y2="35">
+			<stop  offset="0" style="stop-color:#9B1414" />
+			<stop  offset="1" style="stop-color:#E64B4B" />
+		</linearGradient>
+		<polygon fill="url(#SVGID_4_)" points="72,1 12,35 72,69 132,35" />
+		<polygon fill="#C8C8B9" points="72,99 121.0215,75.2559 124.8301,105 72,105" />
+		<polygon fill="#FFFFF0" points="72,105 19.1699,105 22.9785,75.2422 72,99" />
+		<polygon fill="#0F0F0F" points="57.6475,98 38.2617,88.584 36.0537,98" />
+		<polygon fill="#0F0F0F" points="86.3525,98 105.7383,88.584 107.9463,98" />
+	</g>
+</svg>
