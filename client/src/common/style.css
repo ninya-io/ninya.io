@@ -49,9 +49,10 @@ ul {
 
 .sw-fork-me-badge{
   position: absolute; 
-  top: 0; 
-  right: 0; 
+  top: 5px; 
+  right: 5px; 
   border: 0;
+  opacity: 0.5;
 }
 
 .sw-wrapper{

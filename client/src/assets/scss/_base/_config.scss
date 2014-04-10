@@ -49,29 +49,29 @@ $shaded-white: rgba(255, 255, 255, 0.25);
 $dark-beige: #C2C1B8;
 $beige: #D9D7CE;
 $light-beige: #F2F0E6;
-$blue: #3A6DA6;
-$blue-light: #4C8ED9;
-$blue-lighter: #5BADFF;
+$red: #C02F2F;
+$red-light: lighten($red, 10%);
+$red-lighter: lighten($red, 20%);
 
 // Text-Colors
 $text-default: $dark-grey;
 $text-subtle: $grey;
 $text-light: $light-grey;
-$text-highlight: $blue;
-$text-logo-alt: $blue;
+$text-highlight: $red;
+$text-logo-alt: $red;
 $text-bright: $white;
 $text-input: lighten($grey, 13.5%);
 
 // Background-Colors
 $bg-header: $beige;
 $bg-main: $light-beige;
-$bg-tag: $blue;
+$bg-tag: $red;
 $bg-list-item: $shaded-white;
 $bg-search-box: $white;
 
 
 // Border-Colors
-$border-tag: $blue;
+$border-tag: $red;
 $border-light: $lighter-grey;
 $border-light-inverse: $shaded-white;
 $border-thumb: $white;

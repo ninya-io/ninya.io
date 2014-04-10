@@ -26,10 +26,10 @@
     height: 3px;
     @include linear-gradient(
       90deg,
-      $blue-light 0%, $blue-light 25%,
-      $blue-lighter 25%, $blue-lighter 50%,
-      $blue-light 50%, $blue-light 75%,
-      $blue-lighter 75%, $blue-lighter 100%
+      $red-light 0%, $red-light 25%,
+      $red-lighter 25%, $red-lighter 50%,
+      $red-light 50%, $red-light 75%,
+      $red-lighter 75%, $red-lighter 100%
     );
     @include animation (loading 2s linear infinite);
   }
