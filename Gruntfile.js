@@ -20,7 +20,7 @@ module.exports = function (grunt) {
 
     sass: {
       options: {
-        compass: true,
+        //compass: true,
         precision: 6
       },
       dev: {
