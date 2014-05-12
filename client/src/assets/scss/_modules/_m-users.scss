@@ -10,6 +10,16 @@
   border-bottom: 1px solid $border-light;
 }
 
+.sw-m-user__site {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 .sw-m-user__img,
 .sw-m-user__name {
   @include inline-block;
