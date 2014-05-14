@@ -19,6 +19,10 @@ a:focus {
   text-decoration: none;
 }
 
+button:focus {
+    outline:0;
+}
+
 ul {
   list-style: none;
   padding-left: 0;

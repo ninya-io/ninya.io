@@ -1,7 +1,7 @@
 angular.module('StackWho')
 
   .controller('AppController', ['$scope', '$http', '$location', 'config', function($scope, $http, $location, config) {
-    
+
     'use strict';
 
     var definedSearches = [
@@ -63,13 +63,13 @@ angular.module('StackWho')
                 return word && word.length > 0;
             };
 
-            token.locations     =   locationMatch && locationMatch.length > 1 && 
+            token.locations     =   locationMatch && locationMatch.length > 1 &&
                                     locationMatch[1]
                                     .split(',')
                                     .map(sanitize)
                                     .filter(empty) || [];
 
-            token.answerTags   =   answerTagsMatch && answerTagsMatch.length > 1 && 
+            token.answerTags   =   answerTagsMatch && answerTagsMatch.length > 1 &&
                                     answerTagsMatch[1]
                                     .split(',')
                                     .map(sanitize)
@@ -91,6 +91,19 @@ angular.module('StackWho')
     $scope.searchStringTags = tokens.answerTags.join(',');
 
     $scope.displayUsers = [];
+
+    $scope.faq = {
+        text: '',
+        open: false,
+        CLOSE_TEXT: 'Got it. Close the FAQ.',
+        OPEN_TEXT: 'Wonder what this is? Read the FAQ.'
+    };
+    $scope.faq.text = $scope.faq.OPEN_TEXT;
+
+    $scope.toggleFaq = function(){
+        $scope.faq.open = !$scope.faq.open;
+        $scope.faq.text = $scope.faq.open ? $scope.faq.CLOSE_TEXT : $scope.faq.OPEN_TEXT;
+    };
 
     $scope.createQueryLink = function(){
       var cmd = createQueryCommand().replace(/\s/g, '%20');
@@ -142,7 +155,7 @@ angular.module('StackWho')
     //This might look scary at first glance.
     //However this code deals with
     //1. throttleing user input to not hammer our API on every keystroke
-    //2. not requesting data that is already there 
+    //2. not requesting data that is already there
     //3. not getting out of order results
 
     Rx.Observable.merge(
@@ -167,8 +180,3 @@ angular.module('StackWho')
     })
     .subscribe();
   }]);
-  
-  
-  
-
-

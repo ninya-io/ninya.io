@@ -42,6 +42,79 @@
       <header class="sw-l-header" role="banner">
         <div class="sw-l-header__inner">
           <img class="sw-l-logo" height="91px" width="404px" src="assets/img/logo.png">
+
+          <div ng-show="faq.open" class="sw-m-faq-box">
+            <h3>FAQ</h3>
+
+            <div>
+              <h4>What's the intend of this site?</h4>
+              <span>
+                  ninya.io is all about making skilled people in tech more discoverable. It might be
+                  best described as a search engine for tech people. Basically it let's you search for
+                  people by their skillset and location.
+
+                  For instance <a href="http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20angularjs,%20git">here are some people from Berlin who seem to be proficient in angularjs and git.</a>
+              </span>
+            </div>
+            <div>
+              <h4>Where does the user data come from?</h4>
+              <span>
+                  ninya.io synchronizes with sites that tech people use for communication and work. It's currently limited to yield results
+                  from <a href="http://www.stackoverflow.com">StackOverflow</a> and <a href="http://www.serverfault.com">ServerFault</a> but
+                  we are actively working to expand the sources.</span>
+            </div>
+            <div>
+              <h4>Does that compete with StackOverflows candidate search?</h4>
+              <span>
+                  It's true that StackOverlow has it's own <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> which
+                  is a paid service to find employees.
+
+                  We reached out to the StackExchange folks *before* we built this site to make sure that we don't violate their terms of services.
+                  While it may seem as if we enter direct competition, the truth is that we only access data from StackOverflow and ServerFault via
+                  it's public API and therefore only have limited access. StackOverflows <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> provides
+                  much more value for employers than what ninya.io could deliver as a free service.
+            </div>
+            <div>
+              <h4>How do I perform searches?</h4>
+              <span>
+                  <p>
+                      Type a location such as the name of a city (e.g "Berlin") or the name of a country (e.g "Sweden")
+                      in the left side of the search box to find people in your target location.
+                      You can enter multiple comma seperated strings to alias different writings or just combine
+                      multiple locations (e.g "San Francisco, Mountain View").
+                  </p>
+                  <p>
+                      Keep in mind that searches are performed wild-card-based e.g. "Ber" will include people from Berlin
+                      and Bermingham.
+                  </p>
+                  <p>
+                      The same applies to skills which can be entered as comma seperated list of strings into the
+                      right part of the search box (e.g "angularjs, git").
+                  </p>
+                  <p>
+                      You can either perform location based or skill based searches of even combine both to get the
+                      most specific results.
+                  </p>
+              </span>
+            </div>
+            <div>
+                <h4>Who is behind this project?</h4>
+                <span>
+                    <p>
+                        While the site ninya.io is operated by <a href="https://github.com/cburgdorf">Christoph Burgdorf</a> it's
+                        100% based on open source software.
+
+                        The entire source code is MIT licensed and on <a href="https://github.com/ninya-io">github</a>.
+                    </p>
+                </span>
+            </div>
+
+          </div>
+
+          <div class="sw-m-faq-hint">
+              <button class="sw-m-faq-hint__button" ng-click="toggleFaq()">{{ faq.text }}</button>
+          </div>
+
           <div class="sw-m-search-box">
             <div class="sw-m-search-box__input-wrapper">
               <h4 class="sw-m-search-box__input-caption">LOCATION</h4>
