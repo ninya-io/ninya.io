@@ -226,9 +226,7 @@
                   <img src="{{user.profile_image}}" alt="{{user.display_name}}" width="40" height="40">
                 </div>
                 <h3 class="sw-m-user__name">
-                  <a class="user-link" href="http://{{user._ninya_site}}.com/users/{{user.user_id}}" target="_blank">
-                    {{user.display_name}}
-                  </a>
+                  <a class="user-link" href="http://{{user._ninya_site}}.com/users/{{user.user_id}}" target="_blank" ng-bind-html="$sce.trustAsHtml(user.display_name)"></a>
                 </h3>
                 <a class="sw-m-user__site"
                    style="background-image: url('http://cdn.sstatic.net/{{user._ninya_site}}/img/apple-touch-icon.png')"

@@ -3,7 +3,7 @@ angular.module('StackWho')
       $locationProvider.html5Mode(true);
   }])
 
-  .controller('AppController', ['$scope', '$http', '$location', 'config', function($scope, $http, $location, config) {
+  .controller('AppController', ['$scope', '$http', '$location', '$sce', 'config', function($scope, $http, $location, $sce, config) {
 
     'use strict';
 
@@ -94,6 +94,8 @@ angular.module('StackWho')
     $scope.searchStringTags = tokens.answerTags.join(',');
 
     $scope.displayUsers = [];
+
+    $scope.$sce = $sce;
 
     $scope.faq = {
         text: '',
