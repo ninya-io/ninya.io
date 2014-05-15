@@ -1,4 +1,7 @@
 angular.module('StackWho')
+  .config(['$locationProvider', function($locationProvider){
+      $locationProvider.html5Mode(true);
+  }])
 
   .controller('AppController', ['$scope', '$http', '$location', 'config', function($scope, $http, $location, config) {
 
