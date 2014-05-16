@@ -29,6 +29,10 @@
         ga('send', 'pageview');
     </script>
 
+    <script>
+    var serverRendered = <%= serverRendered %>
+    </script>
+
   </head>
 
   <body ng-app="StackWho" ng-controller="AppController">
@@ -47,66 +51,66 @@
             <h3>FAQ</h3>
 
             <div>
-              <h4>What's the intend of this site?</h4>
-              <p>
-                  ninya.io is all about making skilled people in tech more discoverable. It might be
-                  best described as a search engine to find tech people. Basically it let's you search for
-                  people by their skillset and location.
+                <h4>What's the intend of this site?</h4>
+                <p>
+                    ninya.io is all about making skilled people in tech more discoverable. It might be
+                    best described as a search engine to find tech people. Basically it let's you search for
+                    people by their skillset and location.
 
-                  For instance <a target="_blank" href="http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20angularjs,%20git">here are some people from Berlin who seem to be proficient in angularjs and git.</a>
-              </p>
-            </div>
-            <div>
-              <h4>Where does the user data come from?</h4>
-              <p>
-                  ninya.io synchronizes with sites that tech people use for communication and work. It's currently limited to yield results
-                  from <a href="http://www.stackoverflow.com">StackOverflow</a> and <a href="http://www.serverfault.com">ServerFault</a> but
-                  we are actively working to expand the sources.
-              </p>
-            </div>
-            <div>
-              <h4>Does that compete with StackOverflows candidate search?</h4>
-              <p>
-                  It's true that StackOverlow has it's own <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> which
-                  is a paid service to find employees.
+                    For instance <a target="_blank" href="http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20angularjs,%20git">here are some people from Berlin who seem to be proficient in angularjs and git.</a>
+                </p>
+                </div>
+                <div>
+                <h4>Where does the user data come from?</h4>
+                <p>
+                    ninya.io synchronizes with sites that tech people use for communication and work. It's currently limited to yield results
+                    from <a href="http://www.stackoverflow.com">StackOverflow</a> and <a href="http://www.serverfault.com">ServerFault</a> but
+                    we are actively working to expand the sources.
+                </p>
+                </div>
+                <div>
+                <h4>Does that compete with StackOverflows candidate search?</h4>
+                <p>
+                    It's true that StackOverlow has it's own <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> which
+                    is a paid service to find employees.
 
-                  We reached out to the StackExchange folks *before* we built this site to make sure that we don't violate their terms of services.
-                  While it may seem as if we enter direct competition, the truth is that we only access data from StackOverflow and ServerFault via
-                  it's public API and therefore only have limited access. StackOverflows <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> provides
-                  much more value for employers than what ninya.io could deliver as a free service.
-              </p>
-            </div>
-            <div>
-              <h4>How do I perform searches?</h4>
-                  <p>
-                      Type a location such as the name of a city (e.g "Berlin") or the name of a country (e.g "Sweden")
-                      in the left side of the search box to find people in your target location.
-                      You can enter multiple comma seperated strings to alias different writings or just combine
-                      multiple locations (e.g "San Francisco, Mountain View").
-                  </p>
-                  <p>
-                      Keep in mind that searches are performed wild-card-based e.g. "Ber" will include people from Berlin
-                      and Bern.
-                  </p>
-                  <p>
-                      The same applies to skills which can be entered as comma seperated list of strings into the
-                      right part of the search box (e.g "angularjs, git").
-                  </p>
-                  <p>
-                      You can either perform location based or skill based searches of even combine both to get the
-                      most specific results.
-                  </p>
-              </span>
-            </div>
-            <div>
-                <h4>Who is behind this project?</h4>
+                    We reached out to the StackExchange folks *before* we built this site to make sure that we don't violate their terms of services.
+                    While it may seem as if we enter direct competition, the truth is that we only access data from StackOverflow and ServerFault via
+                    it's public API and therefore only have limited access. StackOverflows <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> provides
+                    much more value for employers than what ninya.io could deliver as a free service.
+                </p>
+                </div>
+                <div>
+                <h4>How do I perform searches?</h4>
                     <p>
-                        While the site ninya.io is operated by <a href="https://github.com/cburgdorf">Christoph Burgdorf</a> it's
-                        100% based on open source software.
-
-                        The entire source code is MIT licensed and on <a href="https://github.com/ninya-io">github</a>.
+                        Type a location such as the name of a city (e.g "Berlin") or the name of a country (e.g "Sweden")
+                        in the left side of the search box to find people in your target location.
+                        You can enter multiple comma seperated strings to alias different writings or just combine
+                        multiple locations (e.g "San Francisco, Mountain View").
                     </p>
-            </div>
+                    <p>
+                        Keep in mind that searches are performed wild-card-based e.g. "Ber" will include people from Berlin
+                        and Bern.
+                    </p>
+                    <p>
+                        The same applies to skills which can be entered as comma seperated list of strings into the
+                        right part of the search box (e.g "angularjs, git").
+                    </p>
+                    <p>
+                        You can either perform location based or skill based searches of even combine both to get the
+                        most specific results.
+                    </p>
+                </span>
+                </div>
+                <div>
+                  <h4>Who is behind this project?</h4>
+                      <p>
+                          While the site ninya.io is operated by <a href="https://github.com/cburgdorf">Christoph Burgdorf</a> it's
+                          100% based on open source software.
+
+                          The entire source code is MIT licensed and on <a href="https://github.com/ninya-io">github</a>.
+                      </p>
+                </div>
 
           </div>
 
@@ -144,7 +148,7 @@
         </div>
       </header>
 
-      <main class="sw-m-results" ng-show="displayUsers.length > 0" role="main">
+      <main class="sw-m-results" ng-show="displayUsers.length > 0 || serverRendered" role="main">
 
         <!-- we hardcode those for better SEO until we have something like prerender.io integrated -->
 
@@ -214,7 +218,64 @@
           <a href="https://twitter.com/intent/tweet?url={{createQueryLink()}}&text=Some interesting ninyas!" target="_blank">Tweet</a>
         </div>
 
-        <ul class="sw-m-results__list">
+        <!-- we need this list for server generated results and a duplicated version for angular generated results -->
+        <ul class="sw-m-results__list" ng-show="serverRendered">
+
+        <% users.forEach(function(user){ %>
+
+            <li class="sw-m-results__item"
+              ng-animate>
+              <div class="sw-m-user">
+                <div class="sw-m-user__header">
+                  <div class="sw-m-user__img">
+                    <img src="<%= user.profile_image %>" alt="<%= user.display_name %>" width="40" height="40">
+                  </div>
+                  <h3 class="sw-m-user__name">
+                    <a class="user-link" href="http://<%= user._ninya_site %>.com/users/<%= user.user_id %>" target="_blank">
+                    <%= user.display_name %>
+                    </a>
+                  </h3>
+                  <a class="sw-m-user__site"
+                     style="background-image: url('http://cdn.sstatic.net/<%= user._ninya_site %>/img/apple-touch-icon.png')"
+                     href="http://<%= user._ninya_site %>.com/users/<%= user.user_id %>"
+                     title="<%= user.display_name %> on <%= user._ninya_site %>">
+                  </a>
+                </div>
+                <div class="sw-m-user__body">
+                  <i class="icon-home sw-m-user__icon" aria-hidden="true"></i>
+                  <span class="sw-l-small"> from </span>
+                  <span class="sw-l-highlight">
+                    <%= user.location %>
+                  </span>
+                  <i class="icon-trophy sw-m-user__icon sw-m-user__icon--reputation" aria-hidden="true"></i>
+                  <span class="sw-l-small"> with reputation </span>
+                  <span class="sw-l-highlight">
+                    <%= user.reputation %>
+                  </span>
+                </div>
+                <div class="sw-m-tags <%= user.top_tags.length === 0 ? 'ng-hide' : '' %>">
+                  <h4 class="sw-m-tags__caption">Tags</h4>
+                  <ul class="sw-m-tags__list">
+                    <% user.top_tags.slice(0,5).forEach(function(tag){ %>
+                    <li class="sw-m-tags__item">
+                      <span>
+                        <i class="icon-tag sw-m-tags__icon" aria-hidden="true"></i>
+                        <%= tag.tag_name %>
+                      </span>
+                    </li>
+                    <% }); %>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+        <% }); %>
+
+        </ul>
+
+
+        <!-- this is *roughly* the same as above but for client side generating -->
+        <ul class="sw-m-results__list" ng-show="!serverRendered">
 
           <li class="sw-m-results__item"
             ng-repeat="user in displayUsers"

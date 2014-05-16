@@ -88,6 +88,8 @@ angular.module('StackWho')
 
     var tokens = lexer.tokenize($location.search().cmd || $location.search().q || '');
 
+    $scope.serverRendered = serverRendered;
+
     $scope.definedSearch = getDefinedSearch(tokens);
 
     $scope.searchStringLocation = tokens.locations.join(',');
@@ -163,25 +165,37 @@ angular.module('StackWho')
     //2. not requesting data that is already there
     //3. not getting out of order results
 
-    Rx.Observable.merge(
+    var inputObservable = Rx.Observable.merge(
       $scope.$toObservable('searchStringLocation'),
       $scope.$toObservable('searchStringTags')
-    )
-    .where(function(data){
-      return $scope.searchStringLocation.length > 0 || $scope.searchStringTags.length > 0;
-    })
-    .select(createQueryCommand)
-    .throttle(400)
-    .distinctUntilChanged()
-    .doAction(function(){
-      $scope.displayUsers = [];
-      $scope.loading = true;
-    })
-    .select(queryBackend)
-    .switchLatest()
-    .safeApply($scope, function(data){
-        $scope.loading = false;
-        $scope.displayUsers = data;
-    })
-    .subscribe();
+    );
+
+    inputObservable
+        // the first two notifications are always NON-user initiated. They simply
+        // exist from the initial state of such boxes (either with values or empty)
+        // This gives us a somewhat robust hook to tell when a search *IS* user
+        // initiated so that we can set `serverRendered` to false.
+        .skip(2)
+        .subscribe(function(){
+            $scope.serverRendered = false;
+        })
+
+    inputObservable
+        .where(function(data){
+          return !$scope.serverRendered && ($scope.searchStringLocation.length > 0 || $scope.searchStringTags.length > 0);
+        })
+        .select(createQueryCommand)
+        .throttle(400)
+        .distinctUntilChanged()
+        .doAction(function(){
+          $scope.displayUsers = [];
+          $scope.loading = true;
+        })
+        .select(queryBackend)
+        .switchLatest()
+        .safeApply($scope, function(data){
+            $scope.loading = false;
+            $scope.displayUsers = data;
+        })
+        .subscribe();
   }]);

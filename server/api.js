@@ -5,7 +5,7 @@ module.exports = function(app) {
     var Lexer = require('./lexer.js');
     var ElasticSearchService = require('./elasticSearchService.js');
     var https = require('https');
-    
+
     var lexer = new Lexer();
     var searchService = new ElasticSearchService();
 
@@ -28,5 +28,29 @@ module.exports = function(app) {
                 data.users = users;
                 response.json(data);
             });
+    });
+
+
+    app.get('/', function(request, response){
+
+        if (request.query.q){
+            var token = lexer.tokenize(request.query.q);
+
+            searchService
+                .search(token)
+                .then(function(users){
+                    response.render('index', {
+                        users: users,
+                        serverRendered: users.length > 0
+                    });
+                });
+        }
+        else {
+            response.render('index', {
+                users: [],
+                serverRendered: false
+            })
+        }
+
     });
 };
