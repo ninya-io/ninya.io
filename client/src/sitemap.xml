@@ -6,97 +6,97 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20francisco%20answers:%20angularjs</loc>
+        <loc>http://www.ninya.io/?q=location:%20francisco%20answers:%20angularjs</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20francisco%20answers:%20node.js</loc>
+        <loc>http://www.ninya.io/?q=location:%20francisco%20answers:%20node.js</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20francisco%20answers:%20javascript</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20angularjs</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20node.js</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20javascript</loc>
+        <loc>http://www.ninya.io/?q=location:%20francisco%20answers:%20javascript</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20London%20answers:%20angularjs</loc>
+        <loc>http://www.ninya.io/?q=location:%20Berlin%20answers:%20angularjs</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20London%20answers:%20node.js</loc>
+        <loc>http://www.ninya.io/?q=location:%20Berlin%20answers:%20node.js</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20London%20answers:%20javascript</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Hamburg%20answers:%20angularjs</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Hamburg%20answers:%20node.js</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Hamburg%20answers:%20javascript</loc>
+        <loc>http://www.ninya.io/?q=location:%20Berlin%20answers:%20javascript</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Germany%20answers:%20angularjs</loc>
+        <loc>http://www.ninya.io/?q=location:%20London%20answers:%20angularjs</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Germany%20answers:%20node.js</loc>
+        <loc>http://www.ninya.io/?q=location:%20London%20answers:%20node.js</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Germany%20answers:%20javascript</loc>
+        <loc>http://www.ninya.io/?q=location:%20London%20answers:%20javascript</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
 
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Birmingham%20answers:%20angularjs</loc>
+        <loc>http://www.ninya.io/?q=location:%20Hamburg%20answers:%20angularjs</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Birmingham%20answers:%20node.js</loc>
+        <loc>http://www.ninya.io/?q=location:%20Hamburg%20answers:%20node.js</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>http://www.ninya.io/#/?q=location:%20Birmingham%20answers:%20javascript</loc>
+        <loc>http://www.ninya.io/?q=location:%20Hamburg%20answers:%20javascript</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>http://www.ninya.io/?q=location:%20Germany%20answers:%20angularjs</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>http://www.ninya.io/?q=location:%20Germany%20answers:%20node.js</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>http://www.ninya.io/?q=location:%20Germany%20answers:%20javascript</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>http://www.ninya.io/?q=location:%20Birmingham%20answers:%20angularjs</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>http://www.ninya.io/?q=location:%20Birmingham%20answers:%20node.js</loc>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>http://www.ninya.io/?q=location:%20Birmingham%20answers:%20javascript</loc>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
