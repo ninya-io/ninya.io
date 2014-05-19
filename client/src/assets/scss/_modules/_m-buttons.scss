@@ -1,5 +1,5 @@
 // Buttons
-.sw-m-tweet-button {
+.tweet-button {
   display: inline-block;
   background-color: #eee;
   background-image: -webkit-linear-gradient(#fff,#dedede);
@@ -13,10 +13,11 @@
   font-size: 11px;
   height: 20px;
   line-height: 20px;
-  margin: 5px;
+  padding: 3px 8px;
+  vertical-align: 8%;
 }
 
-.sw-m-tweet-button a {
+.tweet-button a {
   color: #333;
   padding: 2px 5px 2px 20px;
   background: url('https://twitter.com/favicons/favicon.ico') 1px center no-repeat;

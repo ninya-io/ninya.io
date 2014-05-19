@@ -181,6 +181,7 @@ angular.module('StackWho')
     .switchLatest()
     .safeApply($scope, function(data){
         $scope.loading = false;
+        console.log(data);
         $scope.displayUsers = data;
     })
     .subscribe();

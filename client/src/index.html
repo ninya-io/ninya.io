@@ -5,7 +5,7 @@
     <title>Ninya.io - Find real Ninyas.</title>
     <meta name="description" content="Find developers, designers, devops and admins filtered by location and skills across different very popular websites like StackOverflow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/stylesheets/application.css">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -33,236 +33,318 @@
 
   <body ng-app="StackWho" ng-controller="AppController">
 
-    <a href="https://github.com/cburgdorf/ninya.io">
-      <img class="sw-fork-me-badge" src="https://raw.githubusercontent.com/github/media/master/octocats/blacktocat-32.png" alt="Fork me on GitHub">
-    </a>
+    <!-- <a href="https://github.com/cburgdorf/ninya.io"> -->
+    <!--   <img class="sw-fork-me-badge" src="https://raw.githubusercontent.com/github/media/master/octocats/blacktocat-32.png" alt="Fork me on GitHub"> -->
+    <!-- </a> -->
 
     <div class="sw-l-wrapper">
 
-      <header class="sw-l-header" role="banner">
-        <div class="sw-l-header__inner">
-          <img class="sw-l-logo" height="91px" width="404px" src="assets/img/logo.png">
-
-          <div ng-show="faq.open" class="sw-m-faq-box">
-            <h3>FAQ</h3>
-
-            <div>
-              <h4>What's the intend of this site?</h4>
-              <span>
-                  ninya.io is all about making skilled people in tech more discoverable. It might be
-                  best described as a search engine to find tech people. Basically it let's you search for
-                  people by their skillset and location.
-
-                  For instance <a target="_blank" href="http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20angularjs,%20git">here are some people from Berlin who seem to be proficient in angularjs and git.</a>
-              </span>
+      <header class="header" role="banner">
+        <hgroup>
+          <h1 class="header__headline">Ninya.io</h1>
+          <h2 class="header__tagline">Search for real ninyas!</h2>
+        </hgroup>
+        <div id="loading-holder">
+          <div class="loading" ng-show="loading">
+            <div class="loading__animation">
+              <span></span>
             </div>
-            <div>
-              <h4>Where does the user data come from?</h4>
-              <span>
-                  ninya.io synchronizes with sites that tech people use for communication and work. It's currently limited to yield results
-                  from <a href="http://www.stackoverflow.com">StackOverflow</a> and <a href="http://www.serverfault.com">ServerFault</a> but
-                  we are actively working to expand the sources.</span>
-            </div>
-            <div>
-              <h4>Does that compete with StackOverflows candidate search?</h4>
-              <span>
-                  It's true that StackOverlow has it's own <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> which
-                  is a paid service to find employees.
-
-                  We reached out to the StackExchange folks *before* we built this site to make sure that we don't violate their terms of services.
-                  While it may seem as if we enter direct competition, the truth is that we only access data from StackOverflow and ServerFault via
-                  it's public API and therefore only have limited access. StackOverflows <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> provides
-                  much more value for employers than what ninya.io could deliver as a free service.
-            </div>
-            <div>
-              <h4>How do I perform searches?</h4>
-              <span>
-                  <p>
-                      Type a location such as the name of a city (e.g "Berlin") or the name of a country (e.g "Sweden")
-                      in the left side of the search box to find people in your target location.
-                      You can enter multiple comma seperated strings to alias different writings or just combine
-                      multiple locations (e.g "San Francisco, Mountain View").
-                  </p>
-                  <p>
-                      Keep in mind that searches are performed wild-card-based e.g. "Ber" will include people from Berlin
-                      and Bermingham.
-                  </p>
-                  <p>
-                      The same applies to skills which can be entered as comma seperated list of strings into the
-                      right part of the search box (e.g "angularjs, git").
-                  </p>
-                  <p>
-                      You can either perform location based or skill based searches of even combine both to get the
-                      most specific results.
-                  </p>
-              </span>
-            </div>
-            <div>
-                <h4>Who is behind this project?</h4>
-                <span>
-                    <p>
-                        While the site ninya.io is operated by <a href="https://github.com/cburgdorf">Christoph Burgdorf</a> it's
-                        100% based on open source software.
-
-                        The entire source code is MIT licensed and on <a href="https://github.com/ninya-io">github</a>.
-                    </p>
-                </span>
-            </div>
-
           </div>
-
-          <div class="sw-m-faq-hint">
-              <button class="sw-m-faq-hint__button" ng-click="toggleFaq()">{{ faq.text }}</button>
-          </div>
-
-          <div class="sw-m-search-box">
-            <div class="sw-m-search-box__input-wrapper">
-              <h4 class="sw-m-search-box__input-caption">LOCATION</h4>
-              <input class="sw-m-search-box__input"
+        </div>
+      </header>
+      
+      <main class="main" role="main">
+        <div class="search-box card">
+          <h3 class="search-box__headline">Search for ninyas</h3>
+          <ul class="search-box__fields">
+            <li class="search-box__field">
+            <label class="search-box__label" for="location"><i class="fa fa-location-arrow"></i> Location</label>
+              <input 
+                class="search-box__input-text"
                 type="text"
+                id="location"
                 ng-model="searchStringLocation"
                 placeholder="London, Birmingham"
                 autocomplete="off"
                 autocorrect="off"
                 autocapitalize="off">
-            </div>
-            <div class="sw-m-search-box__input-wrapper">
-                <h4 class="sw-m-search-box__input-caption">SKILLS</h4>
-                <input class="sw-m-search-box__input"
-                type="text"
-                ng-model="searchStringTags"
-                placeholder="java, c#"
-                autocomplete="off"
-                autocorrect="off"
-                autocapitalize="off">
-            </div>
-          </div>
+            </li>
+            <li class="search-box__field">
+            <label class="search-box__label" for="skills"><i class="fa fa-star"></i> Skills</label>
+                <input 
+                  class="search-box__input-text"
+                  type="text"
+                  id="skills"
+                  ng-model="searchStringTags"
+                  placeholder="Java, C#, Go"
+                  autocomplete="off"
+                  autocorrect="off"
+                  autocapitalize="off">
+            </li>
+          </ul>
         </div>
-        <div class="sw-m-loading" ng-class="{'is-loading': loading}">
-          <div class="sw-m-loading__animation">
-            <span></span>
-          </div>
-        </div>
-      </header>
 
-      <main class="sw-m-results" ng-show="displayUsers.length > 0" role="main">
 
-        <!-- we hardcode those for better SEO until we have something like prerender.io integrated -->
-
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_london'">
-          Those are the top AngularJS developers from London
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_london'">
-          Those are the top Node.js developers from London
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_london'">
-          Those are the top JavaScript developers from London
-        </h2>
-
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_sanfrancisco'">
-          Those are the top AngularJS developers from San Francisco
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_sanfrancisco'">
-          Those are the top Node.js developers from San Francisco
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_sanfrancisco'">
-          Those are the top JavaScript developers from San Francisco
-        </h2>
-
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_berlin'">
-          Those are the top AngularJS developers from Berlin
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_berlin'">
-          Those are the top Node.js developers from Berlin
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_berlin'">
-          Those are the top JavaScript developers from Berlin
-        </h2>
-
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_hamburg'">
-          Those are the top AngularJS developers from Hamburg
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_hamburg'">
-          Those are the top Node.js developers from Hamburg
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_hamburg'">
-          Those are the top JavaScript developers from Hamburg
-        </h2>
-
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_germany'">
-          Those are the top AngularJS developers from Germany
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_germany'">
-          Those are the top Node.js developers from Germany
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_germany'">
-          Those are the top JavaScript developers from Germany
-        </h2>
-
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_birmingham'">
-          Those are the top AngularJS developers from Birmingham
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_birmingham'">
-          Those are the top Node.js developers from Birmingham
-        </h2>
-        <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_birmingham'">
-          Those are the top JavaScript developers from Birmingham
-        </h2>
-
-        <h2 class="sw-m-results__heading" ng-show="!definedSearch">Results</h2>
-
-        <div class="sw-m-tweet-button">
-          <a href="https://twitter.com/intent/tweet?url={{createQueryLink()}}&text=Some interesting ninyas!" target="_blank">Tweet</a>
-        </div
-
-        <ul class="sw-m-results__list">
-
-          <li class="sw-m-results__item"
-            ng-repeat="user in displayUsers"
-            ng-animate>
-            <div class="sw-m-user">
-              <div class="sw-m-user__header">
-                <div class="sw-m-user__img">
-                  <img src="{{user.profile_image}}" alt="{{user.display_name}}" width="40" height="40">
+        <section class="results" ng-show="displayUsers.length > 0">
+          <header>
+            <h2 class="results-headline"><i class="fa fa-search"></i> Results <span class="tweet-button"><a href="https://twitter.com/intent/tweet?url={{createQueryLink()}}&text=Some interesting ninyas!" target="_blank">Tweet</a></span></h2>
+          </header>
+          <ul class="results-list">
+            <li 
+              class="results-list__item card"
+              ng-repeat="user in displayUsers"
+              ng-animate>
+                <div class="user">
+                  <img class="user__avatar" ng-src="{{user.profile_image}}" alt="{{user.display_name}}" width="80" height="80">
+                  <h3 class="user__username">
+                    <a href="http://{{user._ninya_site}}.com/users/{{user.user_id}}" target="_blank" ng-bind-html="$sce.trustAsHtml(user.display_name)"></a>
+                    <a class="so-badge"
+                      ng-href="http://{{user._ninya_site}}.com/users/{{user.user_id}}"
+                      title="{{user.display_name}} on {{user._ninya_site}}">
+                    </a>
+                  </h3>
+                  <dl class="user__information">
+                    <dt class="user__information__term">From:</dt>
+                    <dd class="user__information__description"><i class="fa fa-home"></i> {{user.location}}</dd>
+                    <dt class="user__information__term">Reputation:</dt>
+                    <dd class="user__information__description"><i class="fa fa-trophy"></i> {{user.reputation}}</dd>
+                  </dl>
+                  <ul class="user-tags-list">
+                    <li class="user-tags-list__item" ng-repeat="tag in user.top_tags.slice(0, 5)">
+                    <i class="fa fa-tag"></i> {{tag.tag_name}}
+                    </li>
+                  </ul>
                 </div>
-                <h3 class="sw-m-user__name">
-                  <a class="user-link" href="http://{{user._ninya_site}}.com/users/{{user.user_id}}" target="_blank" ng-bind-html="$sce.trustAsHtml(user.display_name)"></a>
-                </h3>
-                <a class="sw-m-user__site"
-                   style="background-image: url('http://cdn.sstatic.net/{{user._ninya_site}}/img/apple-touch-icon.png')"
-                   href="http://{{user._ninya_site}}.com/users/{{user.user_id}}"
-                   title="{{user.display_name}} on {{user._ninya_site}}">
-                </a>
-              </div>
-              <div class="sw-m-user__body">
-                <i class="icon-home sw-m-user__icon" aria-hidden="true"></i>
-                <span class="sw-l-small"> from </span>
-                <span class="sw-l-highlight">
-                  {{user.location}}
-                </span>
-                <i class="icon-trophy sw-m-user__icon sw-m-user__icon--reputation" aria-hidden="true"></i>
-                <span class="sw-l-small"> with reputation </span>
-                <span class="sw-l-highlight">
-                  {{user.reputation}}
-                </span>
-              </div>
-              <div class="sw-m-tags" ng-show="user.top_tags.length > 0">
-                <h4 class="sw-m-tags__caption">Tags</h4>
-                <ul class="sw-m-tags__list">
-                  <li class="sw-m-tags__item" ng-repeat="tag in user.top_tags.slice(0, 5)">
-                    <span>
-                      <i class="icon-tag sw-m-tags__icon" aria-hidden="true"></i>
-                      {{tag.tag_name}}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </li>
-
-        </ul>
-
+              </li>
+          </ul>
+        </section>
       </main>
+
+
+      <!-- <header class="sw-l-header" role="banner"> -->
+      <!--   <div class="sw-l-header__inner"> -->
+      <!--     <1!-- <img class="sw-l-logo" height="91px" width="404px" src="assets/img/logo.png"> --1> -->
+
+      <!--     <div ng-show="faq.open" class="sw-m-faq-box"> -->
+      <!--       <h3>FAQ</h3> -->
+
+      <!--       <div> -->
+      <!--         <h4>What's the intend of this site?</h4> -->
+      <!--         <span> -->
+      <!--             ninya.io is all about making skilled people in tech more discoverable. It might be -->
+      <!--             best described as a search engine to find tech people. Basically it let's you search for -->
+      <!--             people by their skillset and location. -->
+
+      <!--             For instance <a target="_blank" href="http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20angularjs,%20git">here are some people from Berlin who seem to be proficient in angularjs and git.</a> -->
+      <!--         </span> -->
+      <!--       </div> -->
+      <!--       <div> -->
+      <!--         <h4>Where does the user data come from?</h4> -->
+      <!--         <span> -->
+      <!--             ninya.io synchronizes with sites that tech people use for communication and work. It's currently limited to yield results -->
+      <!--             from <a href="http://www.stackoverflow.com">StackOverflow</a> and <a href="http://www.serverfault.com">ServerFault</a> but -->
+      <!--             we are actively working to expand the sources.</span> -->
+      <!--       </div> -->
+      <!--       <div> -->
+      <!--         <h4>Does that compete with StackOverflows candidate search?</h4> -->
+      <!--         <span> -->
+      <!--             It's true that StackOverlow has it's own <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> which -->
+      <!--             is a paid service to find employees. -->
+
+      <!--             We reached out to the StackExchange folks *before* we built this site to make sure that we don't violate their terms of services. -->
+      <!--             While it may seem as if we enter direct competition, the truth is that we only access data from StackOverflow and ServerFault via -->
+      <!--             it's public API and therefore only have limited access. StackOverflows <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> provides -->
+      <!--             much more value for employers than what ninya.io could deliver as a free service. -->
+      <!--       </div> -->
+      <!--       <div> -->
+      <!--         <h4>How do I perform searches?</h4> -->
+      <!--         <span> -->
+      <!--             <p> -->
+      <!--                 Type a location such as the name of a city (e.g "Berlin") or the name of a country (e.g "Sweden") -->
+      <!--                 in the left side of the search box to find people in your target location. -->
+      <!--                 You can enter multiple comma seperated strings to alias different writings or just combine -->
+      <!--                 multiple locations (e.g "San Francisco, Mountain View"). -->
+      <!--             </p> -->
+      <!--             <p> -->
+      <!--                 Keep in mind that searches are performed wild-card-based e.g. "Ber" will include people from Berlin -->
+      <!--                 and Bermingham. -->
+      <!--             </p> -->
+      <!--             <p> -->
+      <!--                 The same applies to skills which can be entered as comma seperated list of strings into the -->
+      <!--                 right part of the search box (e.g "angularjs, git"). -->
+      <!--             </p> -->
+      <!--             <p> -->
+      <!--                 You can either perform location based or skill based searches of even combine both to get the -->
+      <!--                 most specific results. -->
+      <!--             </p> -->
+      <!--         </span> -->
+      <!--       </div> -->
+      <!--       <div> -->
+      <!--           <h4>Who is behind this project?</h4> -->
+      <!--           <span> -->
+      <!--               <p> -->
+      <!--                   While the site ninya.io is operated by <a href="https://github.com/cburgdorf">Christoph Burgdorf</a> it's -->
+      <!--                   100% based on open source software. -->
+
+      <!--                   The entire source code is MIT licensed and on <a href="https://github.com/ninya-io">github</a>. -->
+      <!--               </p> -->
+      <!--           </span> -->
+      <!--       </div> -->
+
+      <!--     </div> -->
+
+      <!--     <div class="sw-m-faq-hint"> -->
+      <!--         <button class="sw-m-faq-hint__button" ng-click="toggleFaq()">{{ faq.text }}</button> -->
+      <!--     </div> -->
+
+      <!--     <div class="sw-m-search-box"> -->
+      <!--       <div class="sw-m-search-box__input-wrapper"> -->
+      <!--         <h4 class="sw-m-search-box__input-caption">LOCATION</h4> -->
+      <!--         <input class="sw-m-search-box__input" -->
+      <!--           type="text" -->
+      <!--           ng-model="searchStringLocation" -->
+      <!--           placeholder="London, Birmingham" -->
+      <!--           autocomplete="off" -->
+      <!--           autocorrect="off" -->
+      <!--           autocapitalize="off"> -->
+      <!--       </div> -->
+      <!--       <div class="sw-m-search-box__input-wrapper"> -->
+      <!--           <h4 class="sw-m-search-box__input-caption">SKILLS</h4> -->
+      <!--           <input class="sw-m-search-box__input" -->
+      <!--           type="text" -->
+      <!--           ng-model="searchStringTags" -->
+      <!--           placeholder="java, c#" -->
+      <!--           autocomplete="off" -->
+      <!--           autocorrect="off" -->
+      <!--           autocapitalize="off"> -->
+      <!--       </div> -->
+      <!--     </div> -->
+      <!--   </div> -->
+      <!--   <div class="sw-m-loading" ng-class="{'is-loading': loading}"> -->
+      <!--     <div class="sw-m-loading__animation"> -->
+      <!--       <span></span> -->
+      <!--     </div> -->
+      <!--   </div> -->
+      <!-- </header> -->
+
+      <!-- <main class="sw-m-results" ng-show="displayUsers.length > 0" role="main"> -->
+
+      <!--   <1!-- we hardcode those for better SEO until we have something like prerender.io integrated --1> -->
+
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_london'"> -->
+      <!--     Those are the top AngularJS developers from London -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_london'"> -->
+      <!--     Those are the top Node.js developers from London -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_london'"> -->
+      <!--     Those are the top JavaScript developers from London -->
+      <!--   </h2> -->
+
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_sanfrancisco'"> -->
+      <!--     Those are the top AngularJS developers from San Francisco -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_sanfrancisco'"> -->
+      <!--     Those are the top Node.js developers from San Francisco -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_sanfrancisco'"> -->
+      <!--     Those are the top JavaScript developers from San Francisco -->
+      <!--   </h2> -->
+
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_berlin'"> -->
+      <!--     Those are the top AngularJS developers from Berlin -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_berlin'"> -->
+      <!--     Those are the top Node.js developers from Berlin -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_berlin'"> -->
+      <!--     Those are the top JavaScript developers from Berlin -->
+      <!--   </h2> -->
+
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_hamburg'"> -->
+      <!--     Those are the top AngularJS developers from Hamburg -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_hamburg'"> -->
+      <!--     Those are the top Node.js developers from Hamburg -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_hamburg'"> -->
+      <!--     Those are the top JavaScript developers from Hamburg -->
+      <!--   </h2> -->
+
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_germany'"> -->
+      <!--     Those are the top AngularJS developers from Germany -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_germany'"> -->
+      <!--     Those are the top Node.js developers from Germany -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_germany'"> -->
+      <!--     Those are the top JavaScript developers from Germany -->
+      <!--   </h2> -->
+
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'angular_birmingham'"> -->
+      <!--     Those are the top AngularJS developers from Birmingham -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'nodejs_birmingham'"> -->
+      <!--     Those are the top Node.js developers from Birmingham -->
+      <!--   </h2> -->
+      <!--   <h2 class="sw-m-results__heading" ng-show="definedSearch === 'javascript_birmingham'"> -->
+      <!--     Those are the top JavaScript developers from Birmingham -->
+      <!--   </h2> -->
+
+      <!--   <h2 class="sw-m-results__heading" ng-show="!definedSearch">Results</h2> -->
+
+      <!--   <div class="sw-m-tweet-button"> -->
+      <!--     <a href="https://twitter.com/intent/tweet?url={{createQueryLink()}}&text=Some interesting ninyas!" target="_blank">Tweet</a> -->
+      <!--   </div> -->
+
+      <!--   <ul class="sw-m-results__list"> -->
+
+      <!--     <li class="sw-m-results__item" -->
+      <!--       ng-repeat="user in displayUsers" -->
+      <!--       ng-animate> -->
+      <!--       <div class="sw-m-user"> -->
+      <!--         <div class="sw-m-user__header"> -->
+      <!--           <div class="sw-m-user__img"> -->
+      <!--             <img src="{{user.profile_image}}" alt="{{user.display_name}}" width="40" height="40"> -->
+      <!--           </div> -->
+      <!--           <h3 class="sw-m-user__name"> -->
+      <!--             <a class="user-link" href="http://{{user._ninya_site}}.com/users/{{user.user_id}}" target="_blank" ng-bind-html="$sce.trustAsHtml(user.display_name)"></a> -->
+      <!--           </h3> -->
+      <!--           <a class="sw-m-user__site" -->
+      <!--              style="background-image: url('http://cdn.sstatic.net/{{user._ninya_site}}/img/apple-touch-icon.png')" -->
+      <!--              href="http://{{user._ninya_site}}.com/users/{{user.user_id}}" -->
+      <!--              title="{{user.display_name}} on {{user._ninya_site}}"> -->
+      <!--           </a> -->
+      <!--         </div> -->
+      <!--         <div class="sw-m-user__body"> -->
+      <!--           <i class="icon-home sw-m-user__icon" aria-hidden="true"></i> -->
+      <!--           <span class="sw-l-small"> from </span> -->
+      <!--           <span class="sw-l-highlight"> -->
+      <!--             {{user.location}} -->
+      <!--           </span> -->
+      <!--           <i class="icon-trophy sw-m-user__icon sw-m-user__icon--reputation" aria-hidden="true"></i> -->
+      <!--           <span class="sw-l-small"> with reputation </span> -->
+      <!--           <span class="sw-l-highlight"> -->
+      <!--             {{user.reputation}} -->
+      <!--           </span> -->
+      <!--         </div> -->
+      <!--         <div class="sw-m-tags" ng-show="user.top_tags.length > 0"> -->
+      <!--           <h4 class="sw-m-tags__caption">Tags</h4> -->
+      <!--           <ul class="sw-m-tags__list"> -->
+      <!--             <li class="sw-m-tags__item" ng-repeat="tag in user.top_tags.slice(0, 5)"> -->
+      <!--               <span> -->
+      <!--                 <i class="icon-tag sw-m-tags__icon" aria-hidden="true"></i> -->
+      <!--                 {{tag.tag_name}} -->
+      <!--               </span> -->
+      <!--             </li> -->
+      <!--           </ul> -->
+      <!--         </div> -->
+      <!--       </div> -->
+      <!--     </li> -->
+
+      <!--   </ul> -->
+
+      <!-- </main> -->
 
     </div>
 

@@ -64,7 +64,7 @@ $text-input: lighten($grey, 13.5%);
 
 // Background-Colors
 $bg-header: $beige;
-$bg-main: $light-beige;
+$bg-main: /*$light-beige*/ hsla(0, 0%, 0%, 0.2);
 $bg-tag: $red;
 $bg-list-item: $shaded-white;
 $bg-search-box: $white;
