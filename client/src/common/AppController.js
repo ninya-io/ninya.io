@@ -80,7 +80,7 @@ angular.module('StackWho')
 
     $scope.createQueryLink = function(){
       var cmd = createQueryCommand().replace(/\s/g, '%20');
-      return encodeURIComponent('http://www.ninya.io/#/?q=' + cmd);
+      return encodeURIComponent('http://www.ninya.io/?q=' + cmd);
     };
 
     // since the site operates under stackwho.herokuapp.com and ninya.io we need to use origin except when we are on localhost
