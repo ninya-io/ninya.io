@@ -41,6 +41,10 @@ module.exports = function(app) {
                 .then(function(users){
                     response.render('index', {
                         users: users,
+                        locations: token.locations.join(', '),
+                        hasLocations: token.locations.length > 0,
+                        skills: token.answerTags.join(', '),
+                        hasSkills: token.answerTags.length > 0,
                         serverRendered: users.length > 0
                     });
                 });
@@ -48,7 +52,9 @@ module.exports = function(app) {
         else {
             response.render('index', {
                 users: [],
-                serverRendered: false
+                serverRendered: false,
+                hasLocations: false,
+                hasSkills: false
             })
         }
 
