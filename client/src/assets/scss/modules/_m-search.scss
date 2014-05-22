@@ -1,0 +1,72 @@
+.nin-search {
+  background: hsl(0, 0%, 98%);
+  border: 1px solid hsl(0, 0%, 65%);
+  border-radius: 0.4em;
+  padding: 1em;
+  box-sizing: border-box;
+}
+.nin-search__headline {
+  font-weight: 300;
+  font-size: 1.2em;
+  color: hsl(0, 0%, 35%);
+  margin: 0 0 0.5em 0;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid hsl(0, 0%, 85%);
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+
+.nin-search__fields {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nin-search__field {
+  width: 100%;
+  margin: 1em 0 0 0;
+}
+
+.nin-search__field__label {
+  display: block;
+  font-weight: 200;
+  font-size: 1.1em;
+  text-align: left;
+  color: hsl(0, 0%, 35%);
+
+  i {
+    color: hsl(0, 0%, 45%);
+  }
+}
+
+.nin-search__field__input {
+  margin-top: 0.5em;
+  height: 2.5em;
+  width: 100%;
+  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.04);
+  border: 1px solid hsl(0, 0%, 80%);
+  padding-left: 0.5em;
+  font-size: 1.2em;
+  box-sizing: border-box;
+}
+
+.nin-search__faq-text {
+  margin: 1.2em 0 0 0;
+  text-align: right;
+  font-size: 0.8em;
+
+  a {
+    text-decoration: none;
+    color: $red;
+  }
+}
+
+@media screen and (min-width: 540px) {
+  .nin-search__field {
+    width: 49%;
+    display: inline-block;
+  }
+  .nin-search__faq-text {
+    font-size: 0.9em;
+  }
+}

@@ -1,36 +1,11 @@
-.header {
-  position: fixed;
-  z-index: 1;
-  width: 100%;
-  left: 0;
-  top: 0;
-  background-color: hsla(0, 0%, 98%, 0.9);
-  border-bottom: 2px solid hsl(0, 0%, 75%);
+body {
+  font-family: verdana;
 }
 
-.header__headline, .header__tagline {
-  text-indent: -7000px;
-}
-
-.header__headline {
-  background-image: url('../img/logo.png');
-  background-size: 180px auto;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin: 0 auto;
-  width: 180px;
-  padding: 0.5em;
-}
-
-.header__tagline {
-  height: 0;
-  margin: 0;
-}
-
-.main {
+.nin-main {
   width: 95%;
   margin: 0 auto;
-  margin-top: 5em;
+  margin-top: 5.5em;
 }
 
 .card {
@@ -40,95 +15,10 @@
   padding: 1em;
   box-sizing: border-box;
 }
-.search-box {
-}
 
-.search-box__headline {
-  font-weight: 300;
-  font-size: 1.8em;
-  color: hsl(0, 0%, 35%);
-  margin: 0;
-  padding-bottom: 0.4em;
-  border-bottom: 1px solid hsl(0, 0%, 85%);
-  margin-bottom: 0.5em;
-}
-.search-box__fields {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
 
-.search-box__field {
-  width: 100%;
-  display: inline-block;
-  margin: 0;
-  margin-top: 1em;
-
-  &:first-child {
-    margin-top: 0;
-  }
-}
-
-.search-box__label {
-  display: block;
-  text-align: left;
-  font-size: 1.3em;
-  color: hsl(0, 0%, 35%);
-  font-weight: 200;
-
-  i {
-    color: hsl(0, 0%, 45%);
-  }
-}
-
-.search-box__input-text {
-  margin: 0;
-  padding: 0;
-  margin-top: 0.5em;
-  height: 2.5em;
-  width: 100%;
-  box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.04);
-  border: 1px solid hsl(0, 0%, 89%);
-  padding-left: 0.5em;
-  font-size: 1.3em;
-  box-sizing: border-box;
-}
 .loading-holder {
   position: relative;
-}
-.loading {
-  position: absolute;
-  left: 0;
-  top: 4.1em;
-  width: 100%;
-  height: 6px;
-  overflow: hidden;
-}
-
-.loading__animation {
-  position: absolute;
-  width: 200%;
-  height: 3px;
-  left: 0;
-  top: 0;
-  border-top: 1px solid $border-loading;
-  margin-top: 3px;
-  @include transition-property (transform);
-  @include transition-duration (.3s);
-  @include transition-timing-function(ease-in-out);
-
-  span {
-    display: block;
-    height: 3px;
-    @include linear-gradient(
-      90deg,
-      $red-light 0%, $red-light 25%,
-      $red-lighter 25%, $red-lighter 50%,
-      $red-light 50%, $red-light 75%,
-      $red-lighter 75%, $red-lighter 100%
-    );
-    @include animation (loading 2s linear infinite);
-  }
 }
 
 .results {
@@ -232,39 +122,30 @@
 }
 
 @media screen and (min-width: 640px) {
-  .main {
+  .nin-main {
     width: 608px;
     margin-top: 8em;
   }
-
-  .loading {
-    top: 6.1em;
-  }
-
-  .header__headline {
-    width: 280px;
-    background-size: 280px auto;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-
-  .user__information {
-    width: 580px;
-  }
-
-  .user__information__term, .user__information__description {
-    display: inline-block;
-    box-sizing: border-box;
-  }
-
-  .user__information__term {
-    width: 85px;
-  }
-
-  .user__information__description {
-    width: 490px;
-  }
 }
+
+
+//   .user__information {
+//     width: 580px;
+//   }
+
+//   .user__information__term, .user__information__description {
+//     display: inline-block;
+//     box-sizing: border-box;
+//   }
+
+//   .user__information__term {
+//     width: 85px;
+//   }
+
+//   .user__information__description {
+//     width: 490px;
+//   }
+// }
 
 // Layout-Helpers
 .sw-l-highlight {
@@ -296,7 +177,7 @@
 
 // Default Layout
 // Wrapper
-.sw-l-wrapper {
+.nin-l-wrapper {
   overflow-x: hidden;
 }
 

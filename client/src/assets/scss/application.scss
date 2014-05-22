@@ -14,17 +14,19 @@
         '_base/_icons';
 
 // Layouts
-@import '_layouts/l-default';
+@import 'layout.scss';
 
 // Modules
-@import '_modules/_m-loaders',
-        '_modules/_m-results',
-        '_modules/_m-searchbox',
-        '_modules/_m-faq-box',
-        '_modules/_m-faq-hint',
-        '_modules/_m-tags',
-        '_modules/_m-buttons',
-        '_modules/_m-users';
+@import 'modules/_m-header',
+        'modules/faq.scss',
+        'modules/_m-search',
+        'modules/_m-results',
+        'modules/_m-searchbox',
+        'modules/_m-faq-box',
+        'modules/_m-faq-hint',
+        'modules/_m-tags',
+        'modules/_m-buttons',
+        'modules/_m-users';
 
 // States
 @import '_states/_s-loaders',

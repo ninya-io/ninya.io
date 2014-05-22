@@ -1,15 +1,32 @@
-// Loaders
-.sw-m-loading {
+.nin-m-header-logo {
+  background-image: url('../img/logo.png');
+  background-size: 180px auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0 auto;
+  width: 180px;
+  padding: 0.5em;
+}
+
+.nin-m-header-tagline {
+  height: 0;
+  margin: 0;
+}
+
+.nin-m-header-logo, .nin-m-header-tagline {
+  text-indent: -7000px;
+}
+
+.nin-m-header-loading {
   position: absolute;
   left: 0;
-  bottom: 0;
+  top: 4.1em;
   width: 100%;
-  height: 4px;
+  height: 6px;
   overflow: hidden;
-  border-bottom: 1px solid rgba($border-light-inverse, .8);
-  }
+}
 
-.sw-m-loading__animation {
+.nin-m-header-loading__animation {
   position: absolute;
   width: 200%;
   height: 3px;

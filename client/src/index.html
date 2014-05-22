@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Ninya.io - Find real Ninyas.</title>
@@ -33,55 +33,56 @@
 
   <body ng-app="StackWho" ng-controller="AppController">
 
-    <!-- <a href="https://github.com/cburgdorf/ninya.io"> -->
-    <!--   <img class="sw-fork-me-badge" src="https://raw.githubusercontent.com/github/media/master/octocats/blacktocat-32.png" alt="Fork me on GitHub"> -->
-    <!-- </a> -->
+    <div class="nin-l-wrapper">
 
-    <div class="sw-l-wrapper">
-
-      <header class="header" role="banner">
+      <header class="nin-header" role="banner">
         <hgroup>
-          <h1 class="header__headline">Ninya.io</h1>
-          <h2 class="header__tagline">Search for real ninyas!</h2>
+          <h1 class="nin-header__logo">Ninya.io</h1>
+          <h2 class="nin-header__tagline">Search for real ninyas!</h2>
         </hgroup>
-        <div id="loading-holder">
-          <div class="loading" ng-show="loading">
-            <div class="loading__animation">
-              <span></span>
-            </div>
+        <div class="nin-header__loading" ng-show="loading">
+          <div class="nin-header__loading__animation">
+            <span></span>
           </div>
         </div>
       </header>
       
-      <main class="main" role="main">
-        <div class="search-box card">
-          <h3 class="search-box__headline">Search for ninyas</h3>
-          <ul class="search-box__fields">
-            <li class="search-box__field">
-            <label class="search-box__label" for="location"><i class="fa fa-location-arrow"></i> Location</label>
+      <main class="nin-main" role="main">
+        <div class="nin-search">
+          <h3 class="nin-search__headline">Search for ninyas</h3>
+          <ul class="nin-search__fields">
+            <li class="nin-search__field">
+              <label class="nin-search__field__label" for="location"><i class="fa fa-location-arrow"></i> Location</label>
               <input 
-                class="search-box__input-text"
+                class="nin-search__field__input"
                 type="text"
                 id="location"
                 ng-model="searchStringLocation"
                 placeholder="London, Birmingham"
                 autocomplete="off"
                 autocorrect="off"
-                autocapitalize="off">
+                autocapitalize="off"
+                autofocus
+                tabindex="1">
             </li>
-            <li class="search-box__field">
-            <label class="search-box__label" for="skills"><i class="fa fa-star"></i> Skills</label>
-                <input 
-                  class="search-box__input-text"
-                  type="text"
-                  id="skills"
-                  ng-model="searchStringTags"
-                  placeholder="Java, C#, Go"
-                  autocomplete="off"
-                  autocorrect="off"
-                  autocapitalize="off">
+            <li class="nin-search__field">
+              <label class="nin-search__field__label" for="skills"><i class="fa fa-star"></i> Skills</label>
+              <input 
+                class="nin-search__field__input"
+                type="text"
+                id="skills"
+                ng-model="searchStringTags"
+                placeholder="Java, C#, Go"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                tabindex="2">
             </li>
           </ul>
+          <!-- <section class="nin-search__sample-search"> -->
+          <!--   <h4 class="nin-search__sample-search__headline">Sample searches</h4> -->
+          <!-- </section> -->
+          <p class="nin-search__faq-text">Wonder what this is? <a href="" ng-click="showFAQ = !showFAQ">Read the FAQ</a></p>
         </div>
 
 
@@ -121,6 +122,10 @@
       </main>
 
 
+    <!-- <a href="https://github.com/cburgdorf/ninya.io"> -->
+    <!--   <img class="sw-fork-me-badge" src="https://raw.githubusercontent.com/github/media/master/octocats/blacktocat-32.png" alt="Fork me on GitHub"> -->
+    <!-- </a> -->
+
       <!-- <header class="sw-l-header" role="banner"> -->
       <!--   <div class="sw-l-header__inner"> -->
       <!--     <1!-- <img class="sw-l-logo" height="91px" width="404px" src="assets/img/logo.png"> --1> -->
@@ -128,68 +133,6 @@
       <!--     <div ng-show="faq.open" class="sw-m-faq-box"> -->
       <!--       <h3>FAQ</h3> -->
 
-      <!--       <div> -->
-      <!--         <h4>What's the intend of this site?</h4> -->
-      <!--         <span> -->
-      <!--             ninya.io is all about making skilled people in tech more discoverable. It might be -->
-      <!--             best described as a search engine to find tech people. Basically it let's you search for -->
-      <!--             people by their skillset and location. -->
-
-      <!--             For instance <a target="_blank" href="http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20angularjs,%20git">here are some people from Berlin who seem to be proficient in angularjs and git.</a> -->
-      <!--         </span> -->
-      <!--       </div> -->
-      <!--       <div> -->
-      <!--         <h4>Where does the user data come from?</h4> -->
-      <!--         <span> -->
-      <!--             ninya.io synchronizes with sites that tech people use for communication and work. It's currently limited to yield results -->
-      <!--             from <a href="http://www.stackoverflow.com">StackOverflow</a> and <a href="http://www.serverfault.com">ServerFault</a> but -->
-      <!--             we are actively working to expand the sources.</span> -->
-      <!--       </div> -->
-      <!--       <div> -->
-      <!--         <h4>Does that compete with StackOverflows candidate search?</h4> -->
-      <!--         <span> -->
-      <!--             It's true that StackOverlow has it's own <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> which -->
-      <!--             is a paid service to find employees. -->
-
-      <!--             We reached out to the StackExchange folks *before* we built this site to make sure that we don't violate their terms of services. -->
-      <!--             While it may seem as if we enter direct competition, the truth is that we only access data from StackOverflow and ServerFault via -->
-      <!--             it's public API and therefore only have limited access. StackOverflows <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> provides -->
-      <!--             much more value for employers than what ninya.io could deliver as a free service. -->
-      <!--       </div> -->
-      <!--       <div> -->
-      <!--         <h4>How do I perform searches?</h4> -->
-      <!--         <span> -->
-      <!--             <p> -->
-      <!--                 Type a location such as the name of a city (e.g "Berlin") or the name of a country (e.g "Sweden") -->
-      <!--                 in the left side of the search box to find people in your target location. -->
-      <!--                 You can enter multiple comma seperated strings to alias different writings or just combine -->
-      <!--                 multiple locations (e.g "San Francisco, Mountain View"). -->
-      <!--             </p> -->
-      <!--             <p> -->
-      <!--                 Keep in mind that searches are performed wild-card-based e.g. "Ber" will include people from Berlin -->
-      <!--                 and Bermingham. -->
-      <!--             </p> -->
-      <!--             <p> -->
-      <!--                 The same applies to skills which can be entered as comma seperated list of strings into the -->
-      <!--                 right part of the search box (e.g "angularjs, git"). -->
-      <!--             </p> -->
-      <!--             <p> -->
-      <!--                 You can either perform location based or skill based searches of even combine both to get the -->
-      <!--                 most specific results. -->
-      <!--             </p> -->
-      <!--         </span> -->
-      <!--       </div> -->
-      <!--       <div> -->
-      <!--           <h4>Who is behind this project?</h4> -->
-      <!--           <span> -->
-      <!--               <p> -->
-      <!--                   While the site ninya.io is operated by <a href="https://github.com/cburgdorf">Christoph Burgdorf</a> it's -->
-      <!--                   100% based on open source software. -->
-
-      <!--                   The entire source code is MIT licensed and on <a href="https://github.com/ninya-io">github</a>. -->
-      <!--               </p> -->
-      <!--           </span> -->
-      <!--       </div> -->
 
       <!--     </div> -->
 
@@ -348,6 +291,42 @@
 
     </div>
 
+    <section class="nin-m-faq-modal" ng-show="showFAQ">
+      <div class="nin-m-faq-modal-wrap">
+        <button type="button" class="nin-m-faq-modal__close" href="#" ng-click="showFAQ = !showFAQ">Close X</button>
+        <header>
+          <h3 class="nin-m-faq-modal__headline">FAQ</h3>
+        </header>
+        <div class="nin-m-faq-modal__scrollable">
+          <ul>
+            <li class="nin-faq-modal__qa">
+              <h4>What's the intend of this site?</h4>
+              <p>ninya.io is all about making skilled people in tech more discoverable. It might be best described as a search engine to find tech people. Basically it let's you search for people by their skillset and location. For instance <a target="_blank" href="http://www.ninya.io/#/?q=location:%20Berlin%20answers:%20angularjs,%20git">here are some people from Berlin who seem to be proficient in AngularJS and Git.</a></p>
+            </li>
+            <li class="nin-faq-modal__qa">
+              <h4>Where does the user data come from?</h4>
+              <p>ninya.io synchronizes with sites that tech people use for communication and work. It's currently limited to yield results from <a href="http://www.stackoverflow.com">StackOverflow</a> and <a href="http://www.serverfault.com">ServerFault</a> but we are actively working to expand the sources.</p>
+            </li>
+            <li class="nin-faq-modal__qa">
+                <h4>Does that compete with StackOverflows candidate search?</h4>
+                <p>It's true that StackOverlow has it's own <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> which is a paid service to find employees.</p>
+                <p>We reached out to the StackExchange folks *before* we built this site to make sure that we don't violate their terms of services. While it may seem as if we enter direct competition, the truth is that we only access data from StackOverflow and ServerFault via it's public API and therefore only have limited access. StackOverflows <a href="http://careers.stackoverflow.com/employer/search#!/">candiate search</a> provides much more value for employers than what ninya.io could deliver as a free service.</p>
+            </li>
+            <li class="nin-faq-modal__qa">
+              <h4>How do I perform searches?</h4>
+              <p>Type a location such as the name of a city (e.g "Berlin") or the name of a country (e.g "Sweden") in the left side of the search box to find people in your target location. You can enter multiple comma seperated strings to alias different writings or just combine multiple locations (e.g "San Francisco, Mountain View").</p>
+              <p>Keep in mind that searches are performed wild-card-based e.g. "Ber" will include people from Berlin and Bermingham.</p>
+              <p>The same applies to skills which can be entered as comma seperated list of strings into the right part of the search box (e.g "angularjs, git").</p>
+              <p>You can either perform location based or skill based searches of even combine both to get the most specific results.</p>
+            </li>
+            <li class="nin-faq-modal__qa">
+              <h4>Who is behind this project?</h4>
+              <p>While the site ninya.io is operated by <a href="https://github.com/cburgdorf">Christoph Burgdorf</a> it's 100% based on open source software. The entire source code is MIT licensed and on <a href="https://github.com/ninya-io">github</a>.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </body>
 
 </html>
