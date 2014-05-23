@@ -26,7 +26,7 @@ angular.module('StackWho')
     });
 
     $scope.examples = ToggleButtonModel({
-        CLOSE_TEXT: 'Close the Examples.',
+        CLOSE_TEXT: 'Close examples.',
         OPEN_TEXT: 'Check out some example queries.'
     })
 
