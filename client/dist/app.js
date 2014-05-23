@@ -98,6 +98,55 @@ angular.module('StackWho', ['ngAnimate', 'rx']);
 
 
 }.call(this));
+var Lexer = function(){
+
+    var self = {};
+
+    var ALL_LETTERS_AND_DIGITS = 'a-zA-Z0-9ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ'
+
+    var locationRegex = new RegExp('location:(((?!answers:)[' + ALL_LETTERS_AND_DIGITS + ', ])+)', 'i'),
+        answersRegex  = new RegExp('answers:(((?!location:)[' + ALL_LETTERS_AND_DIGITS + ', ])+)', 'i');
+
+    self.tokenize = function(str){
+
+        var locationMatch = str.match(locationRegex);
+        var answerTagsMatch = str.match(answersRegex);
+
+        var token = {
+            locations: [],
+            answerTags: []
+        };
+
+        var sanitize = function(word){
+            return word && word.trim().toLowerCase();
+        };
+
+        var empty = function(word){
+            return word && word.length > 0;
+        };
+
+        token.locations     =   locationMatch && locationMatch.length > 1 &&
+                                locationMatch[1]
+                                .split(',')
+                                .map(sanitize)
+                                .filter(empty) || [];
+
+        token.answerTags   =   answerTagsMatch && answerTagsMatch.length > 1 &&
+                                answerTagsMatch[1]
+                                .split(',')
+                                .map(sanitize)
+                                .filter(empty) || [];
+
+        return token;
+    };
+
+    return self;
+};
+
+if(typeof module !== 'undefined'){
+    module.exports = Lexer;
+}
+
 angular.module('StackWho')
   .config(['$locationProvider', function($locationProvider){
       $locationProvider.html5Mode(true);
@@ -106,51 +155,6 @@ angular.module('StackWho')
   .controller('AppController', ['$scope', '$http', '$location', '$sce', 'config', function($scope, $http, $location, $sce, config) {
 
     'use strict';
-
-    // TODO: We use this on the backend as well. It's time to move this into a common lib
-    // and come up with a proper build process
-    var Lexer = function(){
-
-        var self = {};
-
-        var locationRegex = /location:(((?!answers:)[-A-Za-z0-9, ])+)/i,
-            answersRegex  = /answers:(((?!location:)[-A-Za-z0-9, ])+)/i;
-
-        self.tokenize = function(str){
-
-            var locationMatch = str.match(locationRegex);
-            var answerTagsMatch = str.match(answersRegex);
-
-            var token = {
-                locations: [],
-                answerTags: []
-            };
-
-            var sanitize = function(word){
-                return word && word.trim().toLowerCase();
-            };
-
-            var empty = function(word){
-                return word && word.length > 0;
-            };
-
-            token.locations     =   locationMatch && locationMatch.length > 1 &&
-                                    locationMatch[1]
-                                    .split(',')
-                                    .map(sanitize)
-                                    .filter(empty) || [];
-
-            token.answerTags   =   answerTagsMatch && answerTagsMatch.length > 1 &&
-                                    answerTagsMatch[1]
-                                    .split(',')
-                                    .map(sanitize)
-                                    .filter(empty) || [];
-
-            return token;
-        };
-
-        return self;
-    };
 
     var lexer = new Lexer();
 

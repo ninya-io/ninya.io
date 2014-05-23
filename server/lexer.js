@@ -25,13 +25,13 @@ var Lexer = function(){
             return word && word.length > 0;
         };
 
-        token.locations     =   locationMatch && locationMatch.length > 1 && 
+        token.locations     =   locationMatch && locationMatch.length > 1 &&
                                 locationMatch[1]
                                 .split(',')
                                 .map(sanitize)
                                 .filter(empty) || [];
 
-        token.answerTags   =   answerTagsMatch && answerTagsMatch.length > 1 && 
+        token.answerTags   =   answerTagsMatch && answerTagsMatch.length > 1 &&
                                 answerTagsMatch[1]
                                 .split(',')
                                 .map(sanitize)
@@ -43,4 +43,6 @@ var Lexer = function(){
     return self;
 };
 
-module.exports = Lexer;
+if(typeof module !== 'undefined'){
+    module.exports = Lexer;
+}

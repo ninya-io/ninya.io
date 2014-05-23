@@ -43,7 +43,12 @@ module.exports = function (grunt) {
     },
     concat: {
         js: {
-            src: ['<%= paths.src %>common/_declarations.js', 'client/libs/rx.angular.js', '<%= paths.src %>**/*.js'],
+            src: [
+                '<%= paths.src %>common/_declarations.js',
+                'client/libs/rx.angular.js',
+                'server/lexer.js',
+                '<%= paths.src %>**/*.js'
+            ],
             dest: '<%= paths.dist %>app.js'
         }
     },
