@@ -1,12 +1,7 @@
-// Searchbox
 .sw-m-faq-hint {
   text-align: right;
 }
 
 .sw-m-faq-hint__button {
-  -webkit-appearance: none;
-  background: none;
-  border: none;
-  color: $red;
-  font-size: 12px;
+  @extend .sw-l-hint-button;
 }

@@ -140,6 +140,20 @@
                 autocapitalize="off">
             </div>
           </div>
+          <div class="sw-m-example-queries-hint">
+              <button class="sw-m-example-queries-hint__button" ng-click="toggleExamples()">{{ examples.text }}</button>
+          </div>
+        </div>
+        <div ng-show="examples.open">
+            <h3>Example queries</h3>
+            <ul>
+                <li><a class="sw-m-example-queries__link" target="_blank" href="http://www.ninya.io/?q=location:%20New%20York%20answers:%20angularjs">The top AngularJS developers from New York</a></li>
+                <li><a class="sw-m-example-queries__link" target="_blank" href="http://www.ninya.io/?q=location:%20New%20York%20answers:%20angularjs,node.js">The top AngularJS + Node.js developers from San Francisco</a></li>
+                <li><a class="sw-m-example-queries__link" target="_blank" href="http://www.ninya.io/?q=location:%20New%20York%20answers:%20ember">The top EmberJS developers from London</a></li>
+                <li><a class="sw-m-example-queries__link" target="_blank" href="http://www.ninya.io/?q=location:%20Istanbul%20answers:%20php">The top PHP developers from Istanbul</a></li>
+                <li><a class="sw-m-example-queries__link" target="_blank" href="http://www.ninya.io/?q=location:%20Germany%20answers:%20elasticsearch">The elasticsearch pros from Germany</a></li>
+
+            </ul>
         </div>
         <div class="sw-m-loading" ng-class="{'is-loading': loading}">
           <div class="sw-m-loading__animation">

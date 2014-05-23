@@ -78,6 +78,20 @@ angular.module('StackWho')
         $scope.faq.text = $scope.faq.open ? $scope.faq.CLOSE_TEXT : $scope.faq.OPEN_TEXT;
     };
 
+
+    $scope.examples = {
+        text: '',
+        open: false,
+        CLOSE_TEXT: 'Close the Examples.',
+        OPEN_TEXT: 'Check out some example queries.'
+    };
+    $scope.examples.text = $scope.examples.OPEN_TEXT;
+
+    $scope.toggleExamples = function(){
+        $scope.examples.open = !$scope.examples.open;
+        $scope.examples.text = $scope.examples.open ? $scope.examples.CLOSE_TEXT : $scope.examples.OPEN_TEXT;
+    };
+
     $scope.createQueryLink = function(){
       var cmd = createQueryCommand().replace(/\s/g, '%20');
       return encodeURIComponent('http://www.ninya.io/?q=' + cmd);

@@ -3,7 +3,6 @@
 .sw-m-search-box {
   @include box-sizing(border-box);
   padding: 0 em(2, $font-size-base);
-  margin-bottom: em(6, $font-size-base);
   border: 1px solid rgba($border-light, .25);
   background-color: $bg-search-box;
   position: relative;
