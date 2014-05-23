@@ -15,10 +15,7 @@
     <script src="//cdn.jsdelivr.net/rxjs/2.2.7/rx.min.js"></script>
     <script src="//cdn.jsdelivr.net/rxjs/2.2.7/rx.time.js"></script>
     <script src="//cdn.jsdelivr.net/rxjs/2.2.7/rx.async.js"></script>
-    <script src="libs/rx.angular.js"></script>
-    <script src="common/_declarations.js"></script>
-    <script src="common/config.js"></script>
-    <script src="common/AppController.js"></script>
+    <script src="<%=isProduction ? 'dist/app.min.js' : 'dist/app.js' %>"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

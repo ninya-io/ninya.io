@@ -33,6 +33,8 @@ module.exports = function(app) {
 
     app.get('/', function(request, response){
 
+        var isProduction = process.env.NODE_ENV === 'production';
+
         if (request.query.q){
             var token = lexer.tokenize(request.query.q);
 
@@ -45,7 +47,8 @@ module.exports = function(app) {
                         hasLocations: token.locations.length > 0,
                         skills: token.answerTags.join(', '),
                         hasSkills: token.answerTags.length > 0,
-                        serverRendered: users.length > 0
+                        serverRendered: users.length > 0,
+                        isProduction: isProduction
                     });
                 });
         }
@@ -54,7 +57,8 @@ module.exports = function(app) {
                 users: [],
                 serverRendered: false,
                 hasLocations: false,
-                hasSkills: false
+                hasSkills: false,
+                isProduction: isProduction
             })
         }
 

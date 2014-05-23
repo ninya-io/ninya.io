@@ -8,6 +8,7 @@ app.use(express.logger());
 app.configure(function(){
     app.use('/', express.static(__dirname + '/../client/src'));
     app.use('/libs', express.static(__dirname + '/../client/libs'));
+    app.use('/dist', express.static(__dirname + '/../client/dist'));
     app.set('views', __dirname + '/../client/src/views');
     app.set('view engine', 'ejs');
 });
