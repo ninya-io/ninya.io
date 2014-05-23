@@ -112,7 +112,7 @@
           </div>
 
           <div class="sw-m-faq-hint">
-              <button class="sw-m-faq-hint__button" ng-click="toggleFaq()">{{ faq.text }}</button>
+              <button class="sw-m-faq-hint__button" ng-click="faq.toggle()">{{ faq.text }}</button>
           </div>
 
           <div class="sw-m-search-box">
@@ -138,7 +138,7 @@
             </div>
           </div>
           <div class="sw-m-example-queries-hint">
-              <button class="sw-m-example-queries-hint__button" ng-click="toggleExamples()">{{ examples.text }}</button>
+              <button class="sw-m-example-queries-hint__button" ng-click="examples.toggle()">{{ examples.text }}</button>
           </div>
         </div>
         <div ng-show="examples.open">

@@ -3,7 +3,7 @@ angular.module('StackWho')
       $locationProvider.html5Mode(true);
   }])
 
-  .controller('AppController', ['$scope', '$http', '$location', '$sce', 'config', function($scope, $http, $location, $sce, config) {
+  .controller('AppController', ['$scope', '$http', '$location', '$sce', 'config', 'ToggleButtonModel', function($scope, $http, $location, $sce, config, ToggleButtonModel) {
 
     'use strict';
 
@@ -20,32 +20,15 @@ angular.module('StackWho')
 
     $scope.$sce = $sce;
 
-    $scope.faq = {
-        text: '',
-        open: false,
+    $scope.faq = ToggleButtonModel({
         CLOSE_TEXT: 'Got it. Close the FAQ.',
         OPEN_TEXT: 'Wonder what this is? Read the FAQ.'
-    };
-    $scope.faq.text = $scope.faq.OPEN_TEXT;
+    });
 
-    $scope.toggleFaq = function(){
-        $scope.faq.open = !$scope.faq.open;
-        $scope.faq.text = $scope.faq.open ? $scope.faq.CLOSE_TEXT : $scope.faq.OPEN_TEXT;
-    };
-
-
-    $scope.examples = {
-        text: '',
-        open: false,
+    $scope.examples = ToggleButtonModel({
         CLOSE_TEXT: 'Close the Examples.',
         OPEN_TEXT: 'Check out some example queries.'
-    };
-    $scope.examples.text = $scope.examples.OPEN_TEXT;
-
-    $scope.toggleExamples = function(){
-        $scope.examples.open = !$scope.examples.open;
-        $scope.examples.text = $scope.examples.open ? $scope.examples.CLOSE_TEXT : $scope.examples.OPEN_TEXT;
-    };
+    })
 
     $scope.createQueryLink = function(){
       var cmd = createQueryCommand().replace(/\s/g, '%20');
